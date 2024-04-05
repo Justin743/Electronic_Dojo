@@ -220,7 +220,16 @@ class customer extends userClass
     }
 }
 
-function registerUser($data){
+function registerUser($data, &$errorMessages){
+    $fNameError = "";
+    $lNameError = "";
+    $passError = "";
+
+    $namePattern = "/^[a-zA-Z-' ]*$/";
+    $passPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
+
+
+
     try {
         require_once "src/DBconnect.php";
 
@@ -231,41 +240,77 @@ function registerUser($data){
             escape($data['password'])
         );
 
-        $sql_User = insertIntoUserQ();
+        if (!preg_match($namePattern, $data['firstname'])){
+            $fNameError = "Invalid username: Special characters are not allowed";
+        }
+        //Anonymous PHP Forms - Validate E-Mail and URL [online], Available from: <https://www.w3schools.com/php/php_form_url_email.asp> .
+        //w3Schools helped with the form validation for username
 
-        $statement_User = $connection->prepare($sql_User);
+        if (!preg_match($namePattern, $data['lastname'])){
+            $lNameError = "Invalid username: Special characters are not allowed";
+        }
 
-        $statement_User->execute([
-            'firstname' => $user->getFirstname(),
-            'lastname' => $user->getLastname(),
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword()
-        ]);
+        if (!preg_match($passPattern, $data['password'])){
+            $passError = "Invalid password: Must contain one lowercase character, one uppercase character, one number and a special character";
+        }
+        //A, V. (2024) PHP Password Validation Check for Strength [online], Available from:
+        // <https://phppot.com/php/php-password-validation/#:~:text=The%20PHP%20preg_match%20function%20returns,is%20matched%20with%20this%20pattern.&text=This%20password%20validation%20returns%20true,a%20minimum%208%2Dcharacter%20length.> .
+        //Form validation for password was created using key aspects from the link above
 
-        $userID = $connection->lastInsertId();
+        if (!empty($fNameError)) {
+            $errorMessages['fNameError'] = $fNameError;
+        }
+        if (!empty($lNameError)) {
+            $errorMessages['lNameError'] = $lNameError;
+        }
 
-        $defaultLPoints = 0;
+        if (!empty($passError)) {
+            $errorMessages['passError'] = $passError;
+        }
 
-        $customer = new customer(
-            $user->getFirstname(),
-            $user->getLastname(),
-            $user->getEmail(),
-            $user->getPassword(),
-            escape($_POST['address']),
-            $defaultLPoints,
-            $userID
-        );
+        if (empty($fNameError) && empty($lNameError) &&empty($passError)){
+            $sql_User = insertIntoUserQ();
+
+            $statement_User = $connection->prepare($sql_User);
+
+            $statement_User->execute([
+                'firstname' => $user->getFirstname(),
+                'lastname' => $user->getLastname(),
+                'email' => $user->getEmail(),
+                'password' => $user->getPassword()
+            ]);
+
+            $userID = $connection->lastInsertId();
+
+            $defaultLPoints = 0;
+
+            $customer = new customer(
+                $user->getFirstname(),
+                $user->getLastname(),
+                $user->getEmail(),
+                $user->getPassword(),
+                escape($data['address']),
+                $defaultLPoints,
+                $userID
+            );
 
 
-        $sql_customer = insertIntoCustomerQ();
+            $sql_customer = insertIntoCustomerQ();
 
-        $statement_customer = $connection->prepare($sql_customer);
+            $statement_customer = $connection->prepare($sql_customer);
 
-        $statement_customer->execute([
-            'address' => $customer->getAddress(),
-            'loyaltyPoints' => $defaultLPoints,
-            'userID' => $customer->getUserID()
-        ]);
+            $statement_customer->execute([
+                'address' => $customer->getAddress(),
+                'loyaltyPoints' => $defaultLPoints,
+                'userID' => $customer->getUserID()
+            ]);
+            header("location:login.php");
+
+            exit;
+
+        }
+
+
     }catch (PDOException $e){
         echo $e->getMessage();
     }
