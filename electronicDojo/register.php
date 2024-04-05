@@ -1,20 +1,18 @@
 <?php
+$errorMessages = [];
+
     if (isset($_POST['submit'])){
 
         require_once "Classes/userClass.php";
 
         require "common.php";
-        registerUser($_POST);
+        registerUser($_POST, $errorMessages);
 
-        header("location:login.php");
+
     }
 ?>
 
-<?php require "templates/noLoginHeader.php";
-    if (isset($_POST['submit'])){
-        echo $_POST['firstname'] . " successfully added";
-    }
-?>
+<?php require "templates/noLoginHeader.php"; ?>
 
 <!--<div class="register">-->
 <!--    <form method="post">-->
@@ -42,21 +40,28 @@
                         <div class="card-body py-md-4">
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="firstname" placeholder="First name" name="firstname" required>
+                                    <?php if (!empty($errorMessages['fNameError'])) {
+                                        echo '<span class="error">' . $errorMessages['fNameError'] . '</span><br><br>';}?>
+                                </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="lastname" placeholder="Last Name" name="lastname" required>
+                                    <?php if (!empty($errorMessages['lNameError'])) {
+                                        echo '<span class="error">' . $errorMessages['lNameError'] . '</span><br><br>';}?>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+                                    <?php if (!empty($errorMessages['passError'])) {
+                                         echo '<span class="error">' . $errorMessages['passError'] . '</span><br><br>';} ?>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="address" placeholder="Address" name="address" required>
                                 </div>
                                 <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <h4>Already have an account?<a href="login.php">Login</a></h4>
+                                    <h4>Already have an account? <a href="login.php">Login</a></h4>
 
                                     <input type="submit" name="submit" class="submit" value="Register">
                                 </div>
