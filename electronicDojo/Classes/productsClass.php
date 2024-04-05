@@ -102,6 +102,7 @@ class Phone extends Product {
 
     public function displayPhone() {
 
+        echo "<h2 id='tab1'></h2>";
         echo "<div class='product'>";
         echo "<div class='product-img'>";
         echo "<img src='" . $this->getImage() . "' alt='' style='width: 400px; height: 400px;'>";
@@ -162,6 +163,7 @@ class laptop extends Product {
 
     public function displayLaptop() {
 
+        echo "<h2 id='tab2'></h2>";
         echo "<div class='product'>";
         echo "<div class='product-img'>";
         echo "<img src='" . $this->getImage() . "' alt='' style='width: 400px; height: 400px;'>";
@@ -223,6 +225,7 @@ class television extends Product {
 
     public function displayTelevision() {
 
+        echo "<h2 id='tab3'></h2>";
         echo "<div class='product'>";
         echo "<div class='product-img'>";
         echo "<img src='" . $this->getImage() . "' alt='' style='width: 400px; height: 400px;'>";
