@@ -56,7 +56,7 @@
                                     <input type="text" class="form-control" id="address" placeholder="Address" name="address" required>
                                 </div>
                                 <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <h4>Already have an account <a href="login.php">Login</a></h4>
+                                    <h4>Already have an account?<a href="login.php">Login</a></h4>
 
                                     <input type="submit" name="submit" class="submit" value="Register">
                                 </div>
