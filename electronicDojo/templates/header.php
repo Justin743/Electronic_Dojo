@@ -39,14 +39,14 @@ required for every page you wish to be accessible only after login*/
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
-    <!-- Custom stylesheet -->
+    <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
-<!--    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -78,9 +78,10 @@ required for every page you wish to be accessible only after login*/
                     <div class="header-search">
                         <form>
                             <select class="input-select">
-                                <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+                                <option value="0">Categories</option>
+                                <option value="1">Phones</option>
+                                <option value="2">Laptops</option>
+                                <option value="3">TVs</option>
                             </select>
                             <input class="input" placeholder="Search here">
                             <button class="search-btn">Search</button>
@@ -92,9 +93,7 @@ required for every page you wish to be accessible only after login*/
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
-                        <!-- Wishlist -->
                         <div>
-
                             <form action="logout.php" method="post" name="Logout_Form" class="form-signin">
                                 <button name="Submit" value="Logout" class="button" type="submit">Log out</button>
                             </form>
@@ -105,7 +104,6 @@ required for every page you wish to be accessible only after login*/
                                 <div class="qty"></div>
                             </a>
                         </div>
-                        <!-- /Wishlist -->
 
                         <!-- Cart -->
                         <div class="dropdown">
@@ -181,7 +179,7 @@ required for every page you wish to be accessible only after login*/
                 <li class="active"><a href="/electronicDojo/index.php">Home</a></li>
                 <li><a href="/electronicDojo/products.php">Products</a></li>
                 <li><a href="/electronicDojo/edit.php">Read/Edit Users</a></li>
-                <li><a href="#">Add/Modfiy Products</a></li>
+                <li><a href="/electronicDojo/productModify.php">Add/Modfiy Products</a></li>
 
             </ul>
             <!-- /NAV -->
@@ -191,3 +189,4 @@ required for every page you wish to be accessible only after login*/
     <!-- /container -->
 </nav>
 <!-- /NAVIGATION -->
+

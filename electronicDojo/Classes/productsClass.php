@@ -102,6 +102,7 @@ class Phone extends Product {
 
     public function displayPhone() {
 
+        echo "<h2 id='tab1'></h2>";
         echo "<div class='product'>";
         echo "<div class='product-img'>";
         echo "<img src='" . $this->getImage() . "' alt='' style='width: 400px; height: 400px;'>";
@@ -162,6 +163,7 @@ class laptop extends Product {
 
     public function displayLaptop() {
 
+        echo "<h2 id='tab2'></h2>";
         echo "<div class='product'>";
         echo "<div class='product-img'>";
         echo "<img src='" . $this->getImage() . "' alt='' style='width: 400px; height: 400px;'>";
@@ -223,6 +225,7 @@ class television extends Product {
 
     public function displayTelevision() {
 
+        echo "<h2 id='tab3'></h2>";
         echo "<div class='product'>";
         echo "<div class='product-img'>";
         echo "<img src='" . $this->getImage() . "' alt='' style='width: 400px; height: 400px;'>";
@@ -326,12 +329,7 @@ class Order {
     private $total;
     private $products = array(); // Array to store products in the order
 
-    public function __construct($order_ID, $date_of_order, $total)
-    {
-        $this->order_ID = $order_ID;
-        $this->date_of_order = $date_of_order;
-        $this->total = $total;
-    }
+
 
     public function getOrderID()
     {
@@ -369,9 +367,20 @@ class Order {
 
     public function displayOrder()
     {
+        echo "<h2>Order ID: " . $this->getOrderID() . "</h2>";
+        echo "<p>Date of Order: " . $this->getDateOfOrder() . "</p>";
+        echo "<p>Total: $" . $this->getTotal() . "</p>";
 
+        echo "<h3>Products:</h3>";
+        echo "<ul>";
+        foreach ($this->products as $product) {
+            echo "<li>";
+            echo "<p>Product Name: " . $product->getProductName() . "</p>";
+            echo "<p>Price: $" . $product->getPrice() . "</p>";
+            echo "</li>";
+        }
+        echo "</ul>";
     }
-
 }
 
 

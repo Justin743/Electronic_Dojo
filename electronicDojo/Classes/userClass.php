@@ -220,52 +220,117 @@ class customer extends userClass
     }
 }
 
-function registerUser($data){
+function registerUser($data, &$errorMessages){
+    $fNameError = "";
+    $lNameError = "";
+    $passError = "";
+
+    $userPattern = "/^[a-zA-Z']*$/";
+    $addressPattern = "/^[a-zA-Z0-9'\s]*$/";
+    $passPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
+
+
+
     try {
         require_once "src/DBconnect.php";
 
-        $user = new userClass(
-            escape($data['firstname']),
-            escape($data['lastname']),
-            escape($data['email']),
-            escape($data['password'])
-        );
+        if (!preg_match($userPattern, $data['firstname'])){
+            $fNameError = "Invalid first name: Special characters or numbers are not allowed";
+        }
+        //Anonymous PHP Forms - Validate E-Mail and URL [online], Available from: <https://www.w3schools.com/php/php_form_url_email.asp> .
+        //w3Schools helped with the form validation for first name, last name, email and address
 
-        $sql_User = insertIntoUserQ();
+        if (!preg_match($userPattern, $data['lastname'])){
+            $lNameError = "Invalid last name: Special characters or numbers are not allowed";
+        }
 
-        $statement_User = $connection->prepare($sql_User);
+        if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+            $emailError = "Invalid email: Please use the correct email address format";
+        }
 
-        $statement_User->execute([
-            'firstname' => $user->getFirstname(),
-            'lastname' => $user->getLastname(),
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword()
-        ]);
+        if (!preg_match($passPattern, $data['password'])){
+            $passError = "Invalid password: Must contain one lowercase character, one uppercase character, one number and a special character";
+        }
 
-        $userID = $connection->lastInsertId();
+        if (!preg_match($addressPattern, $data['address'])){
+            $addressError = "Invalid Address: Special characters are not allowed";
+        }
+        //A, V. (2024) PHP Password Validation Check for Strength [online], Available from:
+        // <https://phppot.com/php/php-password-validation/#:~:text=The%20PHP%20preg_match%20function%20returns,is%20matched%20with%20this%20pattern.&text=This%20password%20validation%20returns%20true,a%20minimum%208%2Dcharacter%20length.> .
+        //Form validation for password was created using key aspects from the link above
 
-        $defaultLPoints = 0;
+        if (!empty($fNameError)) {
+            $errorMessages['fNameError'] = $fNameError;
+        }
+        if (!empty($lNameError)) {
+            $errorMessages['lNameError'] = $lNameError;
+        }
 
-        $customer = new customer(
-            $user->getFirstname(),
-            $user->getLastname(),
-            $user->getEmail(),
-            $user->getPassword(),
-            escape($_POST['address']),
-            $defaultLPoints,
-            $userID
-        );
+        if (!empty($emailError)){
+            $errorMessages['emailError'] = $emailError;
+        }
+
+        if (!empty($passError)) {
+            $errorMessages['passError'] = $passError;
+        }
+
+        if (!empty($addressError)){
+            $errorMessages['addressError'] = $addressError;
+        }
 
 
-        $sql_customer = insertIntoCustomerQ();
+//If form fields pass validation checks, proceed with registration
+        if (empty($errorMessages)){
 
-        $statement_customer = $connection->prepare($sql_customer);
+            $user = new userClass(
+                escape($data['firstname']),
+                escape($data['lastname']),
+                escape($data['email']),
+                escape($data['password'])
+            );
+            
+            $sql_User = insertIntoUserQ();
 
-        $statement_customer->execute([
-            'address' => $customer->getAddress(),
-            'loyaltyPoints' => $defaultLPoints,
-            'userID' => $customer->getUserID()
-        ]);
+            $statement_User = $connection->prepare($sql_User);
+
+            $statement_User->execute([
+                'firstname' => $user->getFirstname(),
+                'lastname' => $user->getLastname(),
+                'email' => $user->getEmail(),
+                'password' => $user->getPassword()
+            ]);
+
+            $userID = $connection->lastInsertId();
+
+            $defaultLPoints = 0;
+
+            $customer = new customer(
+                $user->getFirstname(),
+                $user->getLastname(),
+                $user->getEmail(),
+                $user->getPassword(),
+                escape($data['address']),
+                $defaultLPoints,
+                $userID
+            );
+
+
+            $sql_customer = insertIntoCustomerQ();
+
+            $statement_customer = $connection->prepare($sql_customer);
+
+            $statement_customer->execute([
+                'address' => $customer->getAddress(),
+                'loyaltyPoints' => $defaultLPoints,
+                'userID' => $customer->getUserID()
+            ]);
+            header("location:login.php");
+
+            exit;
+
+        }
+
+
     }catch (PDOException $e){
         echo $e->getMessage();
     }

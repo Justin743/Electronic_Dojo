@@ -19,10 +19,10 @@ $products = get_products();
                 <h3 class="title">New Products</h3>
                 <div class="section-nav">
                     <ul class="section-tab-nav tab-nav">
-                        <li class="active"><a data-toggle="tab" href="#tab1">Phones</a></li>
-                        <li><a data-toggle="tab" href="#tab2">xxxx</a></li>
-                        <li><a data-toggle="tab" href="#tab3">xxxx</a></li>
-                        <li><a data-toggle="tab" href="#tab4">xxxx</a></li>
+                        <li class="active">
+                            <a data-toggle="tab" href="#tab1">Phones</a></li>
+                        <li><a data-toggle="tab" href="#tab2">Laptops</a></li>
+                        <li><a data-toggle="tab" href="#tab3">TVs</a></li>
                     </ul>
                 </div>
             </div>
