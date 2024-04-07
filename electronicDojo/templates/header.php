@@ -39,14 +39,14 @@ required for every page you wish to be accessible only after login*/
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
-    <!-- Custom stylesheet -->
+    <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
-<!--    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -92,9 +92,7 @@ required for every page you wish to be accessible only after login*/
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
-                        <!-- Wishlist -->
                         <div>
-
                             <form action="logout.php" method="post" name="Logout_Form" class="form-signin">
                                 <button name="Submit" value="Logout" class="button" type="submit">Log out</button>
                             </form>
@@ -105,7 +103,6 @@ required for every page you wish to be accessible only after login*/
                                 <div class="qty"></div>
                             </a>
                         </div>
-                        <!-- /Wishlist -->
 
                         <!-- Cart -->
                         <div class="dropdown">
@@ -191,3 +188,4 @@ required for every page you wish to be accessible only after login*/
     <!-- /container -->
 </nav>
 <!-- /NAVIGATION -->
+

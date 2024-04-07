@@ -329,12 +329,7 @@ class Order {
     private $total;
     private $products = array(); // Array to store products in the order
 
-    public function __construct($order_ID, $date_of_order, $total)
-    {
-        $this->order_ID = $order_ID;
-        $this->date_of_order = $date_of_order;
-        $this->total = $total;
-    }
+
 
     public function getOrderID()
     {
@@ -372,9 +367,20 @@ class Order {
 
     public function displayOrder()
     {
+        echo "<h2>Order ID: " . $this->getOrderID() . "</h2>";
+        echo "<p>Date of Order: " . $this->getDateOfOrder() . "</p>";
+        echo "<p>Total: $" . $this->getTotal() . "</p>";
 
+        echo "<h3>Products:</h3>";
+        echo "<ul>";
+        foreach ($this->products as $product) {
+            echo "<li>";
+            echo "<p>Product Name: " . $product->getProductName() . "</p>";
+            echo "<p>Price: $" . $product->getPrice() . "</p>";
+            echo "</li>";
+        }
+        echo "</ul>";
     }
-
 }
 
 
