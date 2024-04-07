@@ -1,6 +1,6 @@
 <?php
 
-require_once "./config.php";
+require_once './config.php';
 
 try{
     $connection = new PDO($dsn, $username, $password, $options);

@@ -29,3 +29,8 @@ function checkAdminQ(){
     return "SELECT COUNT(*) FROM admin";
 }
 
+function deleteProductQ(){
+    return "DELETE 
+    FROM products WHERE product_ID = :product_ID";
+}
+
