@@ -78,9 +78,10 @@ required for every page you wish to be accessible only after login*/
                     <div class="header-search">
                         <form>
                             <select class="input-select">
-                                <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+                                <option value="0">Categories</option>
+                                <option value="1">Phones</option>
+                                <option value="2">Laptops</option>
+                                <option value="3">TVs</option>
                             </select>
                             <input class="input" placeholder="Search here">
                             <button class="search-btn">Search</button>
@@ -178,7 +179,7 @@ required for every page you wish to be accessible only after login*/
                 <li class="active"><a href="/electronicDojo/index.php">Home</a></li>
                 <li><a href="/electronicDojo/products.php">Products</a></li>
                 <li><a href="/electronicDojo/edit.php">Read/Edit Users</a></li>
-                <li><a href="#">Add/Modfiy Products</a></li>
+                <li><a href="/electronicDojo/productModify.php">Add/Modfiy Products</a></li>
 
             </ul>
             <!-- /NAV -->

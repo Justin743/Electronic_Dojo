@@ -75,7 +75,8 @@ if (isset($_POST['submit'])) {
     <?php } else { ?>
         > No Results found for <?php echo escape($_POST['email']); ?>
     <?php }
-} ?>
+}
+?>
 
 <h2>Find user based on email</h2>
 
