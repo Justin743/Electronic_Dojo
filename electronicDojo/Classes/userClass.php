@@ -225,7 +225,8 @@ function registerUser($data, &$errorMessages){
     $lNameError = "";
     $passError = "";
 
-    $namePattern = "/^[a-zA-Z-' ]*$/";
+    $userPattern = "/^[a-zA-Z']*$/";
+    $addressPattern = "/^[a-zA-Z0-9'\s]*$/";
     $passPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
 
 
@@ -233,25 +234,26 @@ function registerUser($data, &$errorMessages){
     try {
         require_once "src/DBconnect.php";
 
-        $user = new userClass(
-            escape($data['firstname']),
-            escape($data['lastname']),
-            escape($data['email']),
-            escape($data['password'])
-        );
-
-        if (!preg_match($namePattern, $data['firstname'])){
-            $fNameError = "Invalid username: Special characters are not allowed";
+        if (!preg_match($userPattern, $data['firstname'])){
+            $fNameError = "Invalid first name: Special characters or numbers are not allowed";
         }
         //Anonymous PHP Forms - Validate E-Mail and URL [online], Available from: <https://www.w3schools.com/php/php_form_url_email.asp> .
-        //w3Schools helped with the form validation for username
+        //w3Schools helped with the form validation for first name, last name, email and address
 
-        if (!preg_match($namePattern, $data['lastname'])){
-            $lNameError = "Invalid username: Special characters are not allowed";
+        if (!preg_match($userPattern, $data['lastname'])){
+            $lNameError = "Invalid last name: Special characters or numbers are not allowed";
+        }
+
+        if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+            $emailError = "Invalid email: Please use the correct email address format";
         }
 
         if (!preg_match($passPattern, $data['password'])){
             $passError = "Invalid password: Must contain one lowercase character, one uppercase character, one number and a special character";
+        }
+
+        if (!preg_match($addressPattern, $data['address'])){
+            $addressError = "Invalid Address: Special characters are not allowed";
         }
         //A, V. (2024) PHP Password Validation Check for Strength [online], Available from:
         // <https://phppot.com/php/php-password-validation/#:~:text=The%20PHP%20preg_match%20function%20returns,is%20matched%20with%20this%20pattern.&text=This%20password%20validation%20returns%20true,a%20minimum%208%2Dcharacter%20length.> .
@@ -264,11 +266,29 @@ function registerUser($data, &$errorMessages){
             $errorMessages['lNameError'] = $lNameError;
         }
 
+        if (!empty($emailError)){
+            $errorMessages['emailError'] = $emailError;
+        }
+
         if (!empty($passError)) {
             $errorMessages['passError'] = $passError;
         }
 
-        if (empty($fNameError) && empty($lNameError) &&empty($passError)){
+        if (!empty($addressError)){
+            $errorMessages['addressError'] = $addressError;
+        }
+
+
+//If form fields pass validation checks, proceed with registration
+        if (empty($errorMessages)){
+
+            $user = new userClass(
+                escape($data['firstname']),
+                escape($data['lastname']),
+                escape($data['email']),
+                escape($data['password'])
+            );
+            
             $sql_User = insertIntoUserQ();
 
             $statement_User = $connection->prepare($sql_User);
