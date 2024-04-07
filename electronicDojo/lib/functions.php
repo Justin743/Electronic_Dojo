@@ -41,19 +41,15 @@ LEFT JOIN
     return $products;
 }
 
-function displayOrders() {
+function displayOrders()
+{
     $pdo = get_connection();
 
-    $query = "SELECT o.order_ID, o.date_of_order, o.total,
-                     p.product_ID, p.product_name, p.price,
-                     pm.payment_ID
-              FROM `order` AS o
-              JOIN products AS p ON o.product_ID_order = p.product_ID
-              JOIN paymentmethod AS pm ON o.payment_ID_order = pm.payment_ID";
-
-    $stmt = $pdo->prepare($query);
+    $stmt = $pdo->prepare("SELECT * FROM `order` o INNER JOIN products p ON o.product_ID_order = p.product_ID");
     $stmt->execute();
+
     $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     return $orders;
 }
 
