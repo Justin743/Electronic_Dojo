@@ -29,9 +29,9 @@ if (isset($_POST['submit'])) {
         $statement_User->execute($user);
 
         $customer = [
-                "ID" => escape($_POST['ID']),
-                "address" => escape($_POST['address']),
-                "loyaltyPoints" => escape($_POST['loyaltyPoints'])
+            "ID" => escape($_POST['ID']),
+            "address" => escape($_POST['address']),
+            "loyaltyPoints" => escape($_POST['loyaltyPoints'])
         ];
 
         $sql_Customer = "UPDATE customer
@@ -81,10 +81,10 @@ if (isset($_GET['ID'])) {
 
 <form method="post">
     <?php foreach ($user as $userKey => $value) : ?>
-    <label for="<?php echo $userKey; ?>"><?php echo ucfirst($userKey); ?></label>
-    <input type="text" name="<?php echo $userKey; ?>" id="<?php echo $userKey; ?>"
-           value="<?php echo escape($value); ?>"
-    <?php echo ($userKey === 'ID' ? 'readonly' : null) ; ?>>
+        <label for="<?php echo $userKey; ?>"><?php echo ucfirst($userKey); ?></label>
+        <input type="text" name="<?php echo $userKey; ?>" id="<?php echo $userKey; ?>"
+               value="<?php echo escape($value); ?>"
+            <?php echo ($userKey === 'ID' ? 'readonly' : null) ; ?>>
     <?php endforeach; ?>
 
     <input type="submit" name="submit" value="submit">
