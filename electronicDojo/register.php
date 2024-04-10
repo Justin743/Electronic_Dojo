@@ -1,5 +1,4 @@
 <?php
-//Initialize error messages
 $errorMessages = [];
 
     if (isset($_POST['submit'])){

@@ -1,10 +1,23 @@
 <?php
+session_start();
+
+if (!(isset($_SESSION['AdminActive']) && $_SESSION['AdminActive'] === true) &&
+    !(isset($_SESSION['Active']) && $_SESSION['Active'] === true)) {
+    header("location:login.php");
+    exit;
+}
+
+if (isset($_SESSION['AdminActive']) && $_SESSION['AdminActive'] === true) {
+    include('templates/adminHeader.php');
+} else if (isset($_SESSION['Active']) && $_SESSION['Active'] === true) {
+    include('templates/header.php');
+}
+
 require "lib/functions.php";
 require "Classes/productSClass.php";
 $products = get_products();
-?>
 
-<?php require "templates/Header.php"; ?>
+?>
 
 <!-- SECTION -->
 <!-- container -->

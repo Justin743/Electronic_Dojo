@@ -1,6 +1,10 @@
 <?php
+session_start();
+
 require "lib/functions.php";
+
 $orders = displayOrders();
+
 require "templates/header.php";
 require "Classes/productsClass.php"
 ?>
@@ -19,19 +23,17 @@ require "Classes/productsClass.php"
                     <div class="order-summary">
                         <?php foreach ($orders as $order): ?>
 
-                            <?php $Order = new Order(); // Create a new Order object for each order
+                            <?php $Order = new Order();
                             $Order->setOrderID($order['order_ID']);
                             $Order->setDateOfOrder($order['date_of_order']);
                             $Order->setTotal($order['total']);
 
-                            // Add the associated product to the order
                             $Product = new Product();
                             $Product->setProductID($order['product_ID']);
                             $Product->setProductName($order['product_name']);
                             $Product->setPrice($order['price']);
                             $Order->addProduct($Product);
 
-                            // Display the order using the displayOrder() method
                             $Order->displayOrder();
                             ?>
 

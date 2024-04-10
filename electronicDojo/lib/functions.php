@@ -65,5 +65,24 @@ function checkLogin($email, $password)
     return $user;
 }
 
+function checkAdminLogin($email, $password)
+{
+    $pdo = get_connection();
+
+    // SQL to check if a user with the given email and password is an admin
+    $query = "SELECT u.* FROM user u 
+              INNER JOIN admin a ON u.ID = a.user_ID 
+              WHERE u.email = :email AND u.password = :password";
+
+    $stmt = $pdo->prepare($query);
+    // Execute with parameters
+    $stmt->execute(array(':email' => $email, ':password' => $password));
+
+    // Fetch the user if exists
+    $adminUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $adminUser; // Will return false if no such admin user exists
+}
+
 
 
