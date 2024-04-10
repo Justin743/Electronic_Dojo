@@ -1,5 +1,5 @@
 <?php
-if($_SESSION['Active'] == false){
+if($_SESSION['AdminActive'] == false){
     header("location:login.php");
     exit;
 }
@@ -60,7 +60,7 @@ if($_SESSION['Active'] == false){
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="#" class="logo">
-                             <img src="./image/eLogo.png" alt="">
+                            <img src="./image/eLogo.png" alt="">
 
                         </a>
                     </div>
@@ -172,6 +172,9 @@ if($_SESSION['Active'] == false){
             <ul class="main-nav nav navbar-nav">
                 <li class="active"><a href="/electronicDojo/index.php">Home</a></li>
                 <li><a href="/electronicDojo/products.php">Products</a></li>
+                <li><a href="/electronicDojo/edit.php">Read/Edit Users</a></li>
+                <li><a href="/electronicDojo/productModify.php">Add/Modfiy Products</a></li>
+
             </ul>
             <!-- /NAV -->
         </div>
