@@ -30,7 +30,16 @@ function checkAdminQ(){
 }
 
 function deleteProductQ(){
-    return "DELETE 
-    FROM products WHERE product_ID = :product_ID";
+    return "DELETE FROM products WHERE product_ID = :product_ID";
+}
+
+function deleteFromCategoryQ($categoryLower)
+{
+    return "DELETE FROM $categoryLower WHERE product_ID_$categoryLower = :product_ID";
+}
+
+function getCategoryQ()
+{
+    return "SELECT category FROM products WHERE product_ID = :product_ID";
 }
 

@@ -12,12 +12,33 @@ if (isset($_GET['product_ID'])){
 
     $prodID = $_GET["product_ID"];
 
-    $sql = "DELETE 
-    FROM products WHERE product_ID = :product_ID";
+    $connection->beginTransaction();
 
-    $statement = $connection->prepare($sql);
-    $statement->bindParam(":product_ID", $prodID);
-    $statement->execute();
+    try {
+        $sqlGetCategory = getCategoryQ();
+        $statementGetCategory = $connection->prepare($sqlGetCategory);
+        $statementGetCategory->bindParam(":product_ID", $prodID);
+        $statementGetCategory->execute();
+        $category = $statementGetCategory->fetchColumn();
+
+        $categoryLower = strtolower($category);
+
+
+        $sqlDeleteCategory = deleteFromCategoryQ($categoryLower);
+        $statementCategory = $connection->prepare($sqlDeleteCategory);
+        $statementCategory->bindParam(":product_ID", $prodID);
+        $statementCategory->execute();
+
+        $sqlDeleteProducts = deleteProductQ();
+        $statementProducts = $connection->prepare($sqlDeleteProducts);
+        $statementProducts->bindParam(":product_ID", $prodID);
+        $statementProducts->execute();
+
+        $connection->commit();
+    } catch (Exception $e) {
+
+        $connection->rollback();
+    }
 }
 
 function fetchAllProducts($connection) {
