@@ -1,7 +1,8 @@
-<?php require 'templates/header.php';
+<?php
+session_start();
+require 'templates/adminHeader.php';
 require 'lib/sqlQueries.php';
 require 'common.php';
-
 ?>
 
 <?php
