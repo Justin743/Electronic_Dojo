@@ -83,6 +83,20 @@ function checkAdminLogin($email, $password)
 
     return $adminUser; // Will return false if no such admin user exists
 }
+ function save($user)
+{
+    $pdo = get_connection();
 
+    $sql = insertIntoUserQ();
+
+    $statement = $pdo->prepare($sql);
+
+    $statement->bindParam(':firstname', $user['firstname']);
+    $statement->bindParam(':lastname', $user['lastname']);
+    $statement->bindParam(':email', $user['email']);
+    $statement->bindParam(':password', $user['password']);
+
+    $statement->execute($user);
+}
 
 

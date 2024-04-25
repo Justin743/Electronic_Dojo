@@ -9,7 +9,7 @@ $priceTotal = 0.00;
 $loyaltyPtsTotal = 0.00;
 
 
-if (isset($_POST['product_ID']) && is_numeric($_POST['product_ID'])){
+if (isset($_POST['product_ID'])){
     require_once 'src/DBconnect.php';
 
     $prodID = $_POST['product_ID'];
@@ -55,8 +55,11 @@ if (isset($_POST['product_ID']) && is_numeric($_POST['product_ID'])){
 
 <link type="text/css" rel="stylesheet" href="css/cart.css">
 
-<div class="cart content-wrapper">
-    <h1>Shopping Cart</h1>
+<div class="cart-list">
+    <div class="container">
+    <h1 class="card-title text-left">Shopping Cart</h1>
+            <div class="card-body py-md-4">
+                <div class="form-group">
     <form action="index.php?page=cart" method="post">
         <table>
             <thead>
@@ -74,7 +77,6 @@ if (isset($_POST['product_ID']) && is_numeric($_POST['product_ID'])){
             <?php else: ?>
                 <?php foreach ($products as $product): ?>
                     <tr>
-
                         <td
                             <?=$product['product_ID']?>"><?=$product['product_name']?></a>
                         </td>
@@ -84,26 +86,32 @@ if (isset($_POST['product_ID']) && is_numeric($_POST['product_ID'])){
                         <td
                             class="loyaltyPoints"><?=$product['loyalty_points']?>
                         </td>
-
                     </tr>
                 <?php endforeach; ?>
             <?php endif; ?>
             </tbody>
         </table>
-        <div class="subtotal">
+
+        <div class="text-success">
             <span class="text">Subtotal</span>
             <span class="price">&dollar;<?=$priceTotal?></span>
         </div>
 
-        <div class="subtotal">
+        <div class="text-success">
             <span class="text">Total Loyalty Points</span>
             <span class="loyaltyPoints"><?=$loyaltyPtsTotal?></span>
         </div>
-        <div class="buttons">
-            <input type="submit" value="Place Order" name="placeorder">
+        <form method="post" action="/electronicDojo/checkout.php">
+        <div class="primary-btn">
+            <input type="submit" value="Checkout" name="placeorder">
         </div>
+        </form>
     </form>
-</div>
+    </div>
+    </div>
+    </div>
+    </div>
+<?php require 'templates/footer.php'; ?>
 
 
 

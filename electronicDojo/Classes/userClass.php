@@ -225,7 +225,6 @@ function registerUser($data, &$errorMessages){
     $lNameError = "";
     $passError = "";
 
-    $userPattern = "/^[a-zA-Z']*$/";
     $addressPattern = "/^[a-zA-Z0-9'\s]*$/";
     $passPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
 

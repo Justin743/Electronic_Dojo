@@ -38,6 +38,9 @@ class Product {
     }
 
     public function setPrice($price) {
+        if ($price < 0){
+            throw new \InvalidArgumentException("Price must be a positive number");
+        }
         $this->price = $price;
     }
 
