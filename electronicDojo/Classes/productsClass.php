@@ -37,6 +37,9 @@ class Product {
     }
 
     public function setPrice($price) {
+        if ($price < 0){
+            throw new \InvalidArgumentException("Price must be a positive number");
+        }
         $this->price = $price;
     }
 
@@ -99,7 +102,9 @@ class Phone extends Product {
         $this->image = $image;
     }
 
-    public function displayPhone() {
+    public function displayPhone($productID) {
+
+
 
         echo "<h2 id='tab1'></h2>";
         echo "<div class='product'>";
@@ -119,7 +124,10 @@ class Phone extends Product {
         echo "<p class='product-category'>You will earn " . $this->getLoyaltyPoints() . " Loyatly points from this purchase</p>";
         echo "</div>";
         echo "<div class='add-to-cart'>";
-        echo "<button class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> add to cart</button>";
+        echo "<form method='post' action='/electronicDojo/cart.php'>";
+        echo "<input type='hidden' name='product_ID' value=" . $productID . ">";
+        echo "<button type='submit' class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> Add to cart</button>";
+        echo "</form>";
         echo "</div>";
         echo "</div>";
     }
@@ -160,7 +168,7 @@ class laptop extends Product {
         $this->image = $image;
     }
 
-    public function displayLaptop() {
+    public function displayLaptop($productID) {
 
         echo "<h2 id='tab2'></h2>";
         echo "<div class='product'>";
@@ -180,7 +188,10 @@ class laptop extends Product {
         echo "<p class='product-category'>You will earn " . $this->getLoyaltyPoints() . " Loyatly points from this purchase</p>";
         echo "</div>";
         echo "<div class='add-to-cart'>";
-        echo "<button class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> add to cart</button>";
+        echo "<form method='post' action='/electronicDojo/cart.php'>";
+        echo "<input type='hidden' name='product_ID' value=" . $productID . ">";
+        echo "<button type='submit' class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> Add to cart</button>";
+        echo "</form>";
         echo "</div>";
         echo "</div>";
     }
@@ -222,7 +233,7 @@ class television extends Product {
         $this->image = $image;
     }
 
-    public function displayTelevision() {
+    public function displayTelevision($productID) {
 
         echo "<h2 id='tab3'></h2>";
         echo "<div class='product'>";
@@ -242,7 +253,10 @@ class television extends Product {
         echo "<p class='product-category'>You will earn " . $this->getLoyaltyPoints() . " Loyatly points from this purchase</p>";
         echo "</div>";
         echo "<div class='add-to-cart'>";
-        echo "<button class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> add to cart</button>";
+        echo "<form method='post' action='/electronicDojo/cart.php'>";
+        echo "<input type='hidden' name='product_ID' value=" . $productID . ">";
+        echo "<button type='submit' class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> Add to cart</button>";
+        echo "</form>";
         echo "</div>";
         echo "</div>";
     }

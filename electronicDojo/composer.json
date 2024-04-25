@@ -1,0 +1,22 @@
+{
+    "name": "ryand/electronic-dojo",
+    "description": "Unit tests",
+    "autoload": {
+        "psr-4": {
+            "Ryand\\ElectronicDojo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "RD2023Zzz",
+            "email": "b00154780@mytudublin.ie"
+        }
+    ],
+    "require": {
+        "codeception/codeception": "^5.1",
+        "codeception/module-asserts": "*"
+    },
+    "require-dev": {
+        "codeception/module-db": "^3.1"
+    }
+}
