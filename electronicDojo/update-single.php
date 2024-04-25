@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 require "common.php";
 require "Classes/userClass.php";
 

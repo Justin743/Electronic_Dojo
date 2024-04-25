@@ -14,8 +14,8 @@ function get_connection()
 }
 
 function get_products(){
-    $pdo = get_connection();
 
+    $pdo = get_connection();
     $query = "SELECT 
     products.product_ID,
     products.product_name,
@@ -24,11 +24,11 @@ function get_products(){
     products.loyalty_points,
     products.brand,
     products.category,
-    COALESCE(phones.image, laptop.image, television.image) AS image
+    COALESCE(phone.image, laptop.image, television.image) AS image
 FROM 
     products 
 LEFT JOIN 
-    phones ON products.product_ID = phones.product_ID_phone
+    phone ON products.product_ID = phone.product_ID_phone
 LEFT JOIN 
     laptop ON products.product_ID = laptop.product_ID_laptop
 LEFT JOIN 
@@ -41,24 +41,33 @@ LEFT JOIN
     return $products;
 }
 
-function displayOrders()
+function displayOrders($userId)
 {
     $pdo = get_connection();
+    $stmt = $pdo->prepare("SELECT o.*, p.*, c.customer_ID FROM `order` o 
+                       INNER JOIN products p ON o.product_ID_order = p.product_ID 
+                       INNER JOIN customer c ON o.customer_ID_order = c.customer_ID
+                       WHERE c.user_ID = :userId");
 
-    $stmt = $pdo->prepare("SELECT * FROM `order` o INNER JOIN products p ON o.product_ID_order = p.product_ID");
+    $stmt->bindParam(':userId', $userId);
     $stmt->execute();
-
     $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     return $orders;
 }
 
+function cancelOrder($orderId) {
+    $pdo = get_connection();
+    $stmt = $pdo->prepare("DELETE FROM `order` WHERE order_ID = :order_id");
+
+    $stmt->bindParam(':order_id', $orderId);
+    $stmt->execute();
+}
 
 function checkLogin($email, $password)
 {
     $pdo = get_connection();
-
     $query = "SELECT * FROM user WHERE email = :email AND password = :password";
+
     $stmt = $pdo->prepare($query);
     $stmt->execute(array(':email' => $email, ':password' => $password));
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -68,20 +77,26 @@ function checkLogin($email, $password)
 function checkAdminLogin($email, $password)
 {
     $pdo = get_connection();
-
-    // SQL to check if a user with the given email and password is an admin
     $query = "SELECT u.* FROM user u 
               INNER JOIN admin a ON u.ID = a.user_ID 
               WHERE u.email = :email AND u.password = :password";
 
     $stmt = $pdo->prepare($query);
-    // Execute with parameters
     $stmt->execute(array(':email' => $email, ':password' => $password));
-
-    // Fetch the user if exists
     $adminUser = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $adminUser;
+}
 
-    return $adminUser; // Will return false if no such admin user exists
+function getUserDetails($userId){
+
+    $pdo = get_connection();
+        $sql = "SELECT u.firstname, u.lastname, u.email, c.address FROM user u LEFT JOIN customer c ON u.ID = c.user_id WHERE u.ID = :userId";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
 }
 
 

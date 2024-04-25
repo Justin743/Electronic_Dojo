@@ -83,7 +83,6 @@ $products = get_products();
                             } ?>
                             </div>
                         </div>
-
                     </div>
                     <!-- /tab -->
                 </div>

@@ -70,7 +70,6 @@
                         <a class="primary-btn cta-btn" href="products.php">Shop now</a>
                         <p2>Please log in before continuing</p2>
                     </div>
-                    <p2>Please log in before continuing</p2>
                 </div>
             </div>
             <!-- /row -->
@@ -78,12 +77,5 @@
         <!-- /container -->
     </div>
     <!-- /HOT DEAL SECTION -->
-
-
-
-
-
-
     </body>
-
 <?php include "templates/footer.php"?>

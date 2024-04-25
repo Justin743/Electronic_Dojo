@@ -23,7 +23,6 @@ if (isset($_GET['product_ID'])){
 
         $categoryLower = strtolower($category);
 
-
         $sqlDeleteCategory = deleteFromCategoryQ($categoryLower);
         $statementCategory = $connection->prepare($sqlDeleteCategory);
         $statementCategory->bindParam(":product_ID", $prodID);
@@ -40,7 +39,6 @@ if (isset($_GET['product_ID'])){
         $connection->rollback();
     }
 }
-
 function fetchAllProducts($connection) {
     $sql = "SELECT * FROM products";
     $statement = $connection->prepare($sql);

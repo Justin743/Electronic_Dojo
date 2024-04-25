@@ -1872,6 +1872,7 @@ textarea.input {
 
 .order-summary {
   margin: 15px 0px;
+  text-align: center;
 }
 
 .order-summary .order-col {
