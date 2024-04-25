@@ -1,50 +1,32 @@
 <?php
 session_start();
+require_once('lib/functions.php');
 
-require "lib/functions.php";
+if (!isset($_SESSION['Active']) || $_SESSION['Active'] !== true) {
+    header("Location: login.php");
+    exit;
+}
 
-$orders = displayOrders();
+$userDetails = getUserDetails($_SESSION['UserID']);
 
-require "templates/header.php";
-require "Classes/productsClass.php"
+include "templates/header.php";
 ?>
 
-    <!-- Order Details -->
+<body>
+<h1>User Profile</h1>
+<p>First Name: <?php echo ($userDetails['firstname']); ?></p>
+<p>Last Name: <?php echo ($userDetails['lastname']); ?></p>
+<p>Email: <?php echo ($userDetails['email']); ?></p>
+<p>Address: <?php echo ($userDetails['address']); ?></p>
 
-    <div class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-5 order-details">
-                    <div class="section-title text-center">
-                        <h3 class="title">Your Order</h3>
-                    </div>
-                    <div class="order-summary">
-                        <?php foreach ($orders as $order): ?>
+<a href="/electronicDojo/viewOrder.php">My Orders</a>
+</body>
 
-                            <?php $Order = new Order();
-                            $Order->setOrderID($order['order_ID']);
-                            $Order->setDateOfOrder($order['date_of_order']);
-                            $Order->setTotal($order['total']);
+    <form action="logout.php" method="post" name="Logout_Form" class="form-signin">
+        <button name="Submit" value="Logout" class="button" type="submit">Log out</button>
+    </form>
+</html>
 
-                            $Product = new Product();
-                            $Product->setProductID($order['product_ID']);
-                            $Product->setProductName($order['product_name']);
-                            $Product->setPrice($order['price']);
-                            $Order->addProduct($Product);
-
-                            $Order->displayOrder();
-                            ?>
-
-                        <?php endforeach; ?>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <a href="index.php">Back to home</a>
-
-<?php include "templates/footer.php"; ?>
+<?php
+include "templates/footer.php"
+?>

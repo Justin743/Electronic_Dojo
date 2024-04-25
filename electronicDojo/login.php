@@ -13,7 +13,6 @@ if (isset($_POST['Submit'])) {
         $admin = checkAdminLogin($email, $password);
         if ($admin) {
 
-
             $_SESSION['AdminActive'] = true;
             $_SESSION['UserID'] = $admin['ID'];
             $_SESSION['Email'] = $admin['email'];
@@ -23,7 +22,7 @@ if (isset($_POST['Submit'])) {
 
             $user = checkLogin($email, $password);
             if ($user) {
-                // User login successful
+
                 $_SESSION['Active'] = true;
                 $_SESSION['UserID'] = $user['ID'];
                 $_SESSION['Email'] = $user['email'];

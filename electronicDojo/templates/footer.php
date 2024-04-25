@@ -47,6 +47,7 @@
                         <ul class="footer-links">
                             <li><a href="/electronicDojo/profile.php">My Account</a></li>
                             <li><a href="#">View Cart</a></li>
+                            <li><a href="/electronicDojo/viewOrder.php">My Orders</a></li>
                         </ul>
                     </div>
                 </div>

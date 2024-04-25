@@ -88,11 +88,6 @@ if($_SESSION['Active'] == false){
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
                         <div>
-                            <form action="logout.php" method="post" name="Logout_Form" class="form-signin">
-                                <button name="Submit" value="Logout" class="button" type="submit">Log out</button>
-                            </form>
-                        </div>
-                        <div>
                             <a href="/electronicDojo/profile.php"> <i class="fa fa-user-o"></i>
                                 <span>Profile</span>
                                 <div class="qty"></div>
