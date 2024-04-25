@@ -70,7 +70,7 @@ if (isset($_GET['ID'])) {
 }
 ?>
 
-<?php require "templates/header.php"?>
+<?php require "templates/adminHeader.php"?>
 
 <?php if (isset($_POST['submit']) && $statement) : ?>
     <?php echo escape($_POST['firstname']); ?> successfully updated.
