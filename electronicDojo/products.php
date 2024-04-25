@@ -49,6 +49,9 @@ $products = get_products();
                         <div class="products-slick slick-initialized slick-slider" data-nav="#slick-nav-1">
                             <div class="product slick-slide">
                             <?php foreach ($products as $product) {
+                                ?>
+                                <?php
+
                                 if ($product['category'] === 'Phone') {
                                     $phone = new Phone();
                                     $phone->setImage($product['image']);
@@ -58,7 +61,7 @@ $products = get_products();
                                     $phone->setBrand($product['brand']);
                                     $phone->setProductName($product['product_name']);
                                     $phone->setLoyaltyPoints($product['loyalty_points']);
-                                    $phone->displayPhone();
+                                    $phone->displayPhone($product['product_ID']);
                                 } elseif ($product['category'] === 'Laptop') {
                                     $laptop = new Laptop();
                                     $laptop->setImage($product['image']);
@@ -68,7 +71,7 @@ $products = get_products();
                                     $laptop->setBrand($product['brand']);
                                     $laptop->setProductName($product['product_name']);
                                     $laptop->setLoyaltyPoints($product['loyalty_points']);
-                                    $laptop->displayLaptop();
+                                    $laptop->displayLaptop($product['product_ID']);
                                 }elseif ($product['category'] === 'Television') {
                                     $television = new television();
                                     $television->setImage($product['image']);
@@ -78,7 +81,7 @@ $products = get_products();
                                     $television->setBrand($product['brand']);
                                     $television->setProductName($product['product_name']);
                                     $television->setLoyaltyPoints($product['loyalty_points']);
-                                    $television->displayTelevision();
+                                    $television->displayTelevision($product['product_ID']);
                                 }
                             } ?>
                             </div>

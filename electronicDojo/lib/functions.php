@@ -98,6 +98,20 @@ function getUserDetails($userId){
         return $stmt->fetch(PDO::FETCH_ASSOC);
 
 }
+ function save($user)
+{
+    $pdo = get_connection();
 
+    $sql = insertIntoUserQ();
+
+    $statement = $pdo->prepare($sql);
+
+    $statement->bindParam(':firstname', $user['firstname']);
+    $statement->bindParam(':lastname', $user['lastname']);
+    $statement->bindParam(':email', $user['email']);
+    $statement->bindParam(':password', $user['password']);
+
+    $statement->execute($user);
+}
 
 
