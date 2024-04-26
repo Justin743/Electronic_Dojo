@@ -1,8 +1,7 @@
 <?php
-
 $host   ="localhost";
 $username   ="root";
-$password   ="";
+$password   ="Juoz9988/";
 $dbname     ="electronic_dojo";
 $dsn        ="mysql:host=$host;dbname=$dbname";
 $options    =array(
