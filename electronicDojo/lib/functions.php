@@ -24,11 +24,11 @@ function get_products(){
     products.loyalty_points,
     products.brand,
     products.category,
-    COALESCE(phone.image, laptop.image, television.image) AS image
+    COALESCE(phones.image, laptop.image, television.image) AS image
 FROM 
     products 
 LEFT JOIN 
-    phone ON products.product_ID = phone.product_ID_phone
+    phones ON products.product_ID = phones.product_ID_phone
 LEFT JOIN 
     laptop ON products.product_ID = laptop.product_ID_laptop
 LEFT JOIN 
@@ -98,20 +98,30 @@ function getUserDetails($userId){
         return $stmt->fetch(PDO::FETCH_ASSOC);
 
 }
- function save($user)
-{
-    $pdo = get_connection();
 
-    $sql = insertIntoUserQ();
+//Gets row of data from user table according to the userID
+function getUserID($userID) {
+   $pdo = get_connection();
 
-    $statement = $pdo->prepare($sql);
 
-    $statement->bindParam(':firstname', $user['firstname']);
-    $statement->bindParam(':lastname', $user['lastname']);
-    $statement->bindParam(':email', $user['email']);
-    $statement->bindParam(':password', $user['password']);
+    $statement = $pdo->prepare("SELECT * FROM user WHERE ID = :userID");
+    $statement->bindParam(':userID', $userID, PDO::PARAM_INT);
+    $statement->execute();
 
-    $statement->execute($user);
+
+    $userID = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+    return $userID;
 }
+
+
+
+
+
+
+
+
+
 
 

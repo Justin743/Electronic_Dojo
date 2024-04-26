@@ -5,6 +5,11 @@ session_start();
 
 include 'templates/header.php';
 
+if (!isset($_SESSION['Active']) || $_SESSION['Active'] !== true) {
+    header("Location: login.php");
+    exit;
+}
+
 $priceTotal = 0.00;
 $loyaltyPtsTotal = 0.00;
 
@@ -18,7 +23,6 @@ if (isset($_POST['product_ID'])){
     $statement->execute();
 
     $product = $statement->fetch(PDO::FETCH_ASSOC);
-
 
     if ($product){
         if (isset($_SESSION['Active']) && is_array($_SESSION['Active'])){
@@ -60,7 +64,7 @@ if (isset($_POST['product_ID'])){
     <h1 class="card-title text-left">Shopping Cart</h1>
             <div class="card-body py-md-4">
                 <div class="form-group">
-    <form action="index.php?page=cart" method="post">
+    <form action="checkout.php" method="post">
         <table>
             <thead>
             <tr>
@@ -101,9 +105,13 @@ if (isset($_POST['product_ID'])){
             <span class="text">Total Loyalty Points</span>
             <span class="loyaltyPoints"><?=$loyaltyPtsTotal?></span>
         </div>
+
         <form method="post" action="../electronicDojo/checkout.php">
+        <form method="post" action="checkout.php">
+
         <div class="primary-btn">
-            <input type="submit" value="Checkout" name="placeorder">
+            <input type="hidden" name="product_ID" value="<?php echo $product['product_ID']?>">
+            <input type="submit" value="Checkout" id="placeorder" name="placeorder">
         </div>
         </form>
     </form>

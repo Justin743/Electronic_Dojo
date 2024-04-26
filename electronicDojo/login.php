@@ -16,16 +16,19 @@ if (isset($_POST['Submit'])) {
             $_SESSION['AdminActive'] = true;
             $_SESSION['UserID'] = $admin['ID'];
             $_SESSION['Email'] = $admin['email'];
-            header("location: products.php");
+
+            header("location: index.php");
             exit;
         } else {
 
             $user = checkLogin($email, $password);
             if ($user) {
+                $userData = getUserID($user['ID']);
 
                 $_SESSION['Active'] = true;
                 $_SESSION['UserID'] = $user['ID'];
                 $_SESSION['Email'] = $user['email'];
+                $_SESSION['firstname'] = $userData['firstname'];
                 header("location: products.php");
                 exit;
             } else {
