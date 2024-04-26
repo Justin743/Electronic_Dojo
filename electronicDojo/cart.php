@@ -105,7 +105,10 @@ if (isset($_POST['product_ID'])){
             <span class="text">Total Loyalty Points</span>
             <span class="loyaltyPoints"><?=$loyaltyPtsTotal?></span>
         </div>
-        <form method="post" action="checkout.php">
+
+        <form method="post" action="../electronicDojo/checkout.php">
+        <form method="post" action="checkout.php">                                                           
+                                                                   
         <div class="primary-btn">
             <input type="hidden" name="product_ID" value="<?php echo $product['product_ID']?>">
             <input type="submit" value="Checkout" id="placeorder" name="placeorder">

@@ -5,7 +5,7 @@ namespace Tests\Unit;
 
 use Tests\Support\UnitTester;
 
-require 'Classes/productsClass.php';
+require 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/Classes/productsClass.php';
 
 //Test that validates if getters and setter methods function correctly
 class productTest extends \Codeception\Test\Unit
