@@ -1,6 +1,6 @@
 <?php
 
-require_once 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/config.php';
+require_once 'config.php';
 
 try{
     $connection = new PDO($dsn, $username, $password, $options);

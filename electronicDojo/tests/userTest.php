@@ -21,8 +21,10 @@ class userTest extends \Codeception\Test\Unit
         $email = "ryan@gmail.com";
         $password = "Ryandun45?";
 
+        //Creates new user object
         $user = new \userClass($firstName, $lastName, $email, $password);
 
+        //Converts user object values to an array
         $userToArray = [
             'firstname' => $user->getFirstname(),
             'lastname' => $user->getLastname(),
@@ -30,7 +32,6 @@ class userTest extends \Codeception\Test\Unit
             'password' =>$user->getPassword()
         ];
 
-        save($userToArray);
 
         //Verifies if the provided user data exists within the user table within our database.
         $this->tester->seeInDatabase('user', $userToArray);
