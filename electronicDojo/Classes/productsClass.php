@@ -342,7 +342,28 @@ class Order {
     private $date_of_order;
     private $total;
     private $customer_ID;
+
+    private $product_ID;
+
     private $products = array();
+
+    /**
+     * @return mixed
+     */
+    public function getProductID()
+    {
+        return $this->product_ID;
+    }
+
+    /**
+     * @param mixed $product_ID
+     */
+    public function setProductID($product_ID): void
+    {
+        $this->product_ID = $product_ID;
+    }
+
+
 
     public function getCustomerID()
     {
