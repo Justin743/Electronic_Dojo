@@ -13,23 +13,6 @@ $errorMessages = [];
 ?>
 
 <?php require "templates/noLoginHeader.php"; ?>
-
-<!--<div class="register">-->
-<!--    <form method="post">-->
-<!--        <label for="firstname">First Name</label>-->
-<!--        <input type="text" id="firstname" name="firstname" required>-->
-<!--        <label for="lastname">Last Name</label>-->
-<!--        <input type="text" id="lastname" name="lastname" required>-->
-<!--        <label for="email">Email Address</label>-->
-<!--        <input type="email" id="email" name="email" required>-->
-<!--        <label for="password">Create Password</label>-->
-<!--        <input type="password" id="password" name="password" required>-->
-<!--        <label for="address">Home Address</label>-->
-<!--        <input type="text" id="address" name="address" required>-->
-<!--        <input type="submit" name="submit" class="submit" value="Register">-->
-<!--    </form>-->
-<!--</div>-->
-
     <div class="register">
     <form method="post">
         <div class="container">

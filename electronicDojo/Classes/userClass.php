@@ -1,5 +1,5 @@
 <?php
-require "lib/sqlQueries.php";
+require "C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/lib/sqlQueries.php";
 class userClass{
     private $ID;
     private $firstname;
@@ -225,14 +225,13 @@ function registerUser($data, &$errorMessages){
     $lNameError = "";
     $passError = "";
 
-    $userPattern = "/^[a-zA-Z']*$/";
     $addressPattern = "/^[a-zA-Z0-9'\s]*$/";
     $passPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
 
 
 
     try {
-        require_once "src/DBconnect.php";
+        require_once "C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/DBconnect.php";
 
         if (!preg_match($userPattern, $data['firstname'])){
             $fNameError = "Invalid first name: Special characters or numbers are not allowed";

@@ -1,6 +1,16 @@
-<?php require "templates/noLoginHeader.php"?>
+<?php
+session_start();
+if ($_SESSION['Active'] == true){
+    require "templates/header.php";
+} else
+    require "templates/noLoginHeader.php"?>
 
     <body>
+
+<?php if (isset($_SESSION['Active']) == true){
+    $name = $_SESSION['firstname'];
+    echo "<h2>Welcome $name</h2>";
+} ?>
 
     <!-- SECTION -->
     <div class="section">
@@ -56,6 +66,7 @@
     </div>
     <!-- /SECTION -->
 
+
     <!-- HOT DEAL SECTION -->
     <div id="hot-deal" class="section">
         <!-- container -->
@@ -68,9 +79,12 @@
                         <h2 class="text-uppercase">crazy hot deals</h2>
                         <p>For all your electronic needs</p>
                         <a class="primary-btn cta-btn" href="products.php">Shop now</a>
-                        <p2>Please log in before continuing</p2>
+                        <?php
+                        if (isset($_SESSION['Active']) == false){
+                            echo "<p2>Please log in before continuing</p2>";
+                        }else
+                        ?>
                     </div>
-                    <p2>Please log in before continuing</p2>
                 </div>
             </div>
             <!-- /row -->
@@ -78,12 +92,5 @@
         <!-- /container -->
     </div>
     <!-- /HOT DEAL SECTION -->
-
-
-
-
-
-
     </body>
-
 <?php include "templates/footer.php"?>

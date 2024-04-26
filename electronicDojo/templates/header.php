@@ -88,11 +88,6 @@ if($_SESSION['Active'] == false){
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
                         <div>
-                            <form action="logout.php" method="post" name="Logout_Form" class="form-signin">
-                                <button name="Submit" value="Logout" class="button" type="submit">Log out</button>
-                            </form>
-                        </div>
-                        <div>
                             <a href="/electronicDojo/profile.php"> <i class="fa fa-user-o"></i>
                                 <span>Profile</span>
                                 <div class="qty"></div>
@@ -102,7 +97,7 @@ if($_SESSION['Active'] == false){
                         <!-- Cart -->
                         <div class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                <a href="../cart.php"><i class="fa fa-shopping-cart"></i></a>
+                                <a href='/electronicDojo/cart.php'><i class="fa fa-shopping-cart"></i></a>
                                 <span>Your Cart</span>
                                 <div class="qty"></div>
                             </a>

@@ -1,5 +1,4 @@
 <?php
-
 class Product {
     private $product_ID;
     private $product_name;
@@ -38,6 +37,9 @@ class Product {
     }
 
     public function setPrice($price) {
+        if ($price < 0){
+            throw new \InvalidArgumentException("Price must be a positive number");
+        }
         $this->price = $price;
     }
 
@@ -100,7 +102,9 @@ class Phone extends Product {
         $this->image = $image;
     }
 
-    public function displayPhone() {
+    public function displayPhone($productID) {
+
+
 
         echo "<h2 id='tab1'></h2>";
         echo "<div class='product'>";
@@ -120,7 +124,10 @@ class Phone extends Product {
         echo "<p class='product-category'>You will earn " . $this->getLoyaltyPoints() . " Loyatly points from this purchase</p>";
         echo "</div>";
         echo "<div class='add-to-cart'>";
-        echo "<button class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> add to cart</button>";
+        echo "<form method='post' action='/electronicDojo/cart.php'>";
+        echo "<input type='hidden' name='product_ID' value=" . $productID . ">";
+        echo "<button type='submit' class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> Add to cart</button>";
+        echo "</form>";
         echo "</div>";
         echo "</div>";
     }
@@ -161,7 +168,7 @@ class laptop extends Product {
         $this->image = $image;
     }
 
-    public function displayLaptop() {
+    public function displayLaptop($productID) {
 
         echo "<h2 id='tab2'></h2>";
         echo "<div class='product'>";
@@ -181,7 +188,10 @@ class laptop extends Product {
         echo "<p class='product-category'>You will earn " . $this->getLoyaltyPoints() . " Loyatly points from this purchase</p>";
         echo "</div>";
         echo "<div class='add-to-cart'>";
-        echo "<button class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> add to cart</button>";
+        echo "<form method='post' action='/electronicDojo/cart.php'>";
+        echo "<input type='hidden' name='product_ID' value=" . $productID . ">";
+        echo "<button type='submit' class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> Add to cart</button>";
+        echo "</form>";
         echo "</div>";
         echo "</div>";
     }
@@ -223,7 +233,7 @@ class television extends Product {
         $this->image = $image;
     }
 
-    public function displayTelevision() {
+    public function displayTelevision($productID) {
 
         echo "<h2 id='tab3'></h2>";
         echo "<div class='product'>";
@@ -243,7 +253,10 @@ class television extends Product {
         echo "<p class='product-category'>You will earn " . $this->getLoyaltyPoints() . " Loyatly points from this purchase</p>";
         echo "</div>";
         echo "<div class='add-to-cart'>";
-        echo "<button class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> add to cart</button>";
+        echo "<form method='post' action='/electronicDojo/cart.php'>";
+        echo "<input type='hidden' name='product_ID' value=" . $productID . ">";
+        echo "<button type='submit' class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> Add to cart</button>";
+        echo "</form>";
         echo "</div>";
         echo "</div>";
     }
@@ -323,41 +336,66 @@ class Card extends PaymentMethod {
         $this->card_number = $card_number;
     }
 }
+
 class Order {
     private $order_ID;
     private $date_of_order;
     private $total;
-    private $products = array(); // Array to store products in the order
+    private $customer_ID;
 
+    private $product_ID;
 
+    private $products = array();
 
-    public function getOrderID()
+    /**
+     * @return mixed
+     */
+    public function getProductID()
     {
+        return $this->product_ID;
+    }
+
+    /**
+     * @param mixed $product_ID
+     */
+    public function setProductID($product_ID): void
+    {
+        $this->product_ID = $product_ID;
+    }
+
+
+
+    public function getCustomerID()
+    {
+        return $this->customer_ID;
+    }
+
+    public function setCustomerID($customer_ID)
+    {
+        $this->customer_ID = $customer_ID;
+    }
+
+    public function getOrderID() {
         return $this->order_ID;
     }
 
-    public function setOrderID($order_ID)
-    {
+    public function setOrderID($order_ID) {
         $this->order_ID = $order_ID;
     }
 
-    public function getDateOfOrder()
-    {
+    public function getDateOfOrder() {
         return $this->date_of_order;
     }
 
-    public function setDateOfOrder($date_of_order)
-    {
+    public function setDateOfOrder($date_of_order) {
         $this->date_of_order = $date_of_order;
     }
 
-    public function getTotal()
-    {
+    public function getTotal() {
         return $this->total;
     }
 
-    public function setTotal($total)
-    {
+    public function setTotal($total) {
         $this->total = $total;
     }
 
@@ -365,11 +403,17 @@ class Order {
         $this->products[] = $product;
     }
 
-    public function displayOrder()
-    {
+    public function displayOrder() {
+        echo "<h2>Customer ID: " . $this->getCustomerID() . "</h2>";
         echo "<h2>Order ID: " . $this->getOrderID() . "</h2>";
         echo "<p>Date of Order: " . $this->getDateOfOrder() . "</p>";
+
+        $shippingCost = $this->calculateShippingCost();
+        $totalWithShipping = $this->getTotal() + $shippingCost;
+        $this->setTotal($totalWithShipping);
+
         echo "<p>Total: $" . $this->getTotal() . "</p>";
+        echo "<p>Shipping Cost: €" . $shippingCost . "</p>";
 
         echo "<h3>Products:</h3>";
         echo "<ul>";
@@ -380,8 +424,32 @@ class Order {
             echo "</li>";
         }
         echo "</ul>";
+
+        echo '<form method="post" action="cancel_order.php">';
+        echo '<input type="hidden" name="order_id" value="' . $this->getOrderID() . '">';
+        echo '<button type="submit" name="cancel_order" >Cancel Order</button>';
+        echo '</form>';
+    }
+
+    public function calculateShippingCost() {
+        $totalPrice = $this->getTotal();
+        $shippingCost = 0;
+
+        if ($totalPrice < 500) {
+            $shippingCost = 20;
+        } elseif ($totalPrice >= 500 && $totalPrice < 750) {
+            $shippingCost = 15;
+        } elseif ($totalPrice >= 750 && $totalPrice < 1000) {
+            $shippingCost = 10;
+        } elseif ($totalPrice >= 1000 && $totalPrice < 1500) {
+            $shippingCost = 5;
+        } elseif ($totalPrice >= 1500 && $totalPrice < 2000) {
+            $shippingCost = 2.50;
+        } elseif ($totalPrice >= 2000) {
+            $shippingCost = 0;
+        }
+
+        return $shippingCost;
     }
 }
-
-
 
