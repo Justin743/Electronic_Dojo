@@ -1,15 +1,17 @@
 <?php
 session_start();
-if ($_SESSION['Active'] == true){
+if (isset($_SESSION['Active']) && $_SESSION['Active'] == true ){
     require "templates/header.php";
-} else
+} else if (isset($_SESSION['AdminActive']) && $_SESSION['AdminActive'] == true){
+    require 'templates/adminHeader.php';
+}else
     require "templates/noLoginHeader.php"?>
 
     <body>
 
-<?php if (isset($_SESSION['Active']) == true){
+<?php if (isset($_SESSION['Active']) && $_SESSION['Active'] == true){
     $name = $_SESSION['firstname'];
-    echo "<h2>Welcome $name</h2>";
+    echo "<h2 class='text-center'>Welcome $name, select products from the navigation bar to start shopping!</h2>";
 } ?>
 
     <!-- SECTION -->
@@ -80,7 +82,8 @@ if ($_SESSION['Active'] == true){
                         <p>For all your electronic needs</p>
                         <a class="primary-btn cta-btn" href="products.php">Shop now</a>
                         <?php
-                        if (isset($_SESSION['Active']) == false){
+
+                        if (!isset($_SESSION['Active']) && !isset($_SESSION['AdminActive'])){
                             echo "<p2>Please log in before continuing</p2>";
                         }else
                         ?>

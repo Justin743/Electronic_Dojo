@@ -35,5 +35,8 @@ class userTest extends \Codeception\Test\Unit
 
         //Verifies if the provided user data exists within the user table within our database.
         $this->tester->seeInDatabase('user', $userToArray);
+
+        //Verifies if the provided user data exists within the user table within our database.
+        $this->tester->dontSeeInDatabase('user', $userToArray);
     }
 }
