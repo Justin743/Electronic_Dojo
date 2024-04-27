@@ -3,7 +3,8 @@
 
 session_start();
 
-include '../templates/header.php';
+include 'templates/header.php';
+include 'lib/functions.php';
 
 
 
@@ -12,11 +13,13 @@ $loyaltyPtsTotal = 0.00;
 
 
 if (isset($_POST['product_ID'])){
-    require_once '../src/DBconnect.php';
+    require_once 'src/DBconnect.php';
+
+    $pdo = get_connection();
 
     $prodID = $_POST['product_ID'];
 
-    $statement = $connection->prepare('SELECT * FROM products WHERE product_id = ' .$prodID);
+    $statement = $pdo->prepare('SELECT * FROM products WHERE product_id = ' .$prodID);
     $statement->execute();
 
     $product = $statement->fetch(PDO::FETCH_ASSOC);
@@ -40,7 +43,7 @@ if (isset($_POST['product_ID'])){
 
     if ($products_in_cart){
         $prodID = implode(',', array_keys($products_in_cart));
-        $statement = $connection->query('SELECT * FROM products WHERE product_ID IN ('. $prodID . ')');
+        $statement = $pdo->query('SELECT * FROM products WHERE product_ID IN ('. $prodID . ')');
 
         $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -53,68 +56,65 @@ if (isset($_POST['product_ID'])){
 
 ?>
 
-<link type="text/css" rel="stylesheet" href="../css/cart.css">
+    <link type="text/css" rel="stylesheet" href="css/cart.css">
 
-<div class="cart-list">
-    <div class="container">
-    <h1 class="card-title text-left">Shopping Cart</h1>
+    <div class="cart-list">
+        <div class="container">
+            <h1 class="card-title text-left">Shopping Cart</h1>
             <div class="card-body py-md-4">
                 <div class="form-group">
-    <form action="checkout.php" method="post">
-        <table>
-            <thead>
-            <tr>
-                <td>Product</td>
-                <td>Price</td>
-                <td>Loyalty Points</td>
-            </tr>
-            </thead>
-            <tbody>
-            <?php if (empty($products)): ?>
-                <tr>
-                    <td>You have no products added in your Shopping Cart</td>
-                </tr>
-            <?php else: ?>
-                <?php foreach ($products as $product): ?>
-                    <tr>
-                        <td
-                            <?=$product['product_ID']?>"><?=$product['product_name']?></a>
-                        </td>
-                        <td
-                            class="price">&dollar;<?=$product['price']?>
-                        </td>
-                        <td
-                            class="loyaltyPoints"><?=$product['loyalty_points']?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endif; ?>
-            </tbody>
-        </table>
+                    <form action="checkout.php" method="post">
+                        <table>
+                            <thead>
+                            <tr>
+                                <td>Product</td>
+                                <td>Price</td>
+                                <td>Loyalty Points</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php if (empty($products)): ?>
+                                <tr>
+                                    <td>You have no products added in your Shopping Cart</td>
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($products as $product): ?>
+                                    <tr>
+                                        <td
+                                        <?=$product['product_ID']?>"><?=$product['product_name']?></a>
+                                        </td>
+                                        <td
+                                                class="price">&dollar;<?=$product['price']?>
+                                        </td>
+                                        <td
+                                                class="loyaltyPoints"><?=$product['loyalty_points']?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            </tbody>
+                        </table>
 
-        <div class="text-success">
-            <span class="text">Subtotal</span>
-            <span class="price">&dollar;<?=$priceTotal?></span>
+                        <div class="text-success">
+                            <span class="text">Subtotal</span>
+                            <span class="price">&dollar;<?=$priceTotal?></span>
+                        </div>
+
+                        <div class="text-success">
+                            <span class="text">Total Loyalty Points</span>
+                            <span class="loyaltyPoints"><?=$loyaltyPtsTotal?></span>
+                        </div>
+
+                        <form method="post" action="../electronicDojo/checkout.php">
+                            <form method="post" action="checkout.php">
+                                <div class="add-to-cart-btn">
+                                    <input type="hidden" name="product_ID" value="<?php echo $product['product_ID']?>">
+                                    <input type="submit" value="Checkout" id="placeorder" name="placeorder">
+                                </div>
+                            </form>
+                        </form>
+                </div>
+            </div>
         </div>
-
-        <div class="text-success">
-            <span class="text">Total Loyalty Points</span>
-            <span class="loyaltyPoints"><?=$loyaltyPtsTotal?></span>
-        </div>
-
-        <form method="post" action="checkout.php">
-        <form method="post" action="checkout.php">
-        <div class="add-to-cart-btn">
-            <input type="hidden" name="product_ID" value="<?php echo $product['product_ID']?>">
-            <input type="submit" value="Checkout" id="placeorder" name="placeorder">
-        </div>
-        </form>
-    </form>
     </div>
-    </div>
-    </div>
-    </div>
-<?php require '../templates/footer.php'; ?>
-
-
-
+<?php require 'templates/footer.php'; ?>

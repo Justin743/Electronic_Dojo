@@ -12,31 +12,68 @@ class userTest extends \Codeception\Test\Unit
 {
     protected UnitTester $tester;
 
-    public function testInputDB()
+    public function testInvalidFirstName()
     {
-        require "lib/functions.php";
 
-        $firstName = "Ryan";
+        //Set values for the user object
+        $firstName = "Rya£n";
         $lastName = "Dunne";
         $email = "ryan@gmail.com";
         $password = "Ryandun45?";
 
-        //Creates new user object
+        //Creates new user object with set values in constructor
         $user = new \userClass($firstName, $lastName, $email, $password);
 
-        //Converts user object values to an array
-        $userToArray = [
-            'firstname' => $user->getFirstname(),
-            'lastname' => $user->getLastname(),
-            'email' => $user->getEmail(),
-            'password' =>$user->getPassword()
-        ];
+        $this->expectException(\InvalidArgumentException::class);
+        $user->setFirstname($user->getFirstname());
 
-
-        //Verifies if the provided user data exists within the user table within our database.
-        $this->tester->seeInDatabase('user', $userToArray);
-
-        //Verifies if the provided user data exists within the user table within our database.
-        $this->tester->dontSeeInDatabase('user', $userToArray);
     }
+
+    public function testInvalidLastName()
+    {
+        //Set values for the user object
+        $firstName = "Ryan";
+        $lastName = "Dun£e";
+        $email = "ryan@gmail.com";
+        $password = "Ryandun45?";
+
+        //Creates new user object with set values in constructor
+        $user = new \userClass($firstName, $lastName, $email, $password);
+
+        $this->expectException(\InvalidArgumentException::class);
+        $user->setLastname($user->getLastname());
+
+    }
+
+    public function testInvalidEmail()
+    {
+        //Set values for the user object
+        $firstName = "Ryan";
+        $lastName = "Dunne";
+        $email = "ryan@gmail";
+        $password = "Ryandun45?";
+
+        //Creates new user object with set values in constructor
+        $user = new \userClass($firstName, $lastName, $email, $password);
+
+        $this->expectException(\InvalidArgumentException::class);
+        $user->setEmail($user->getEmail());
+    }
+
+    public function testInvalidPassword()
+    {
+        //Set values for the user object
+        $firstName = "Ryan";
+        $lastName = "Dunne";
+        $email = "ryan@gmail.com";
+        $password = "invalidpassword";
+
+        //Creates new user object with set values in constructor
+        $user = new \userClass($firstName, $lastName, $email, $password);
+
+        $this->expectException(\InvalidArgumentException::class);
+        $user->setPassword($user->getPassword());
+
+    }
+
 }
