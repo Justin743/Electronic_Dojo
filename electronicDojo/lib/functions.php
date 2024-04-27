@@ -2,7 +2,7 @@
 
 function get_connection()
 {
-    require 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/config.php';
+    require 'config.php';
 
     $pdo = new PDO(
         $dsn, $username, $password, $options
