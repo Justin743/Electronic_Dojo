@@ -45,8 +45,8 @@ if (isset($_POST['Submit'])) {
                 $_SESSION['Email'] = $user['email'];
                 $_SESSION['firstname'] = $userData['firstname'];
 
-                //Redirect to products.php
-                header("location: products.php");
+                header("location: index.php");
+
                 exit;
 
                 //Else if details are wrong throws an exception.

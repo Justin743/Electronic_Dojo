@@ -1,7 +1,10 @@
 <?php
 session_start();
 require 'templates/adminHeader.php';
-require 'lib/sqlQueries.php'?>
+require 'lib/sqlQueries.php';
+require 'lib/functions.php';
+?>
+
 
 
 <?php
