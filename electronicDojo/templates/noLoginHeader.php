@@ -1,3 +1,4 @@
+<!-- This is a header for users who are not currently logged in -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +35,7 @@
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
-<!--    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+    <!--    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
     <![endif]-->
 
 </head>
@@ -54,7 +55,7 @@
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="#" class="logo">
-                             <img src="./image/eLogo.png" alt="">
+                            <img src="./image/eLogo.png" alt="">
 
                         </a>
                     </div>
@@ -118,9 +119,6 @@
             <ul class="main-nav nav navbar-nav">
                 <li class="active"><a href="/electronicDojo/index.php">Home</a></li>
                 <li><a href="/electronicDojo/products.php">Products</a></li>
-
-
-
             </ul>
             <!-- /NAV -->
         </div>

@@ -1,5 +1,8 @@
+<!-- This is the header for the admin -->
+
 <?php
-if($_SESSION['AdminActive'] == false){
+//Checks to see if the admin session is false, if it is then redirect to the login page.
+if ($_SESSION['AdminActive'] == false) {
     header("location:login.php");
     exit;
 }
