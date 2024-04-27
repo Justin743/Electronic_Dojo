@@ -1,12 +1,12 @@
 <?php
 session_start();
-require 'templates/adminHeader.php';
-require 'lib/sqlQueries.php';
-require 'common.php';
+require '../templates/adminHeader.php';
+require '../lib/sqlQueries.php';
+require '../src/common.php';
 ?>
 
 <?php
-require_once "src/DBconnect.php";
+require_once "../src/DBconnect.php";
 
 if (isset($_GET['product_ID'])){
 
@@ -79,7 +79,7 @@ $products = fetchAllProducts($connection);
                 <td><?php echo escape($product["loyalty_points"])?></td>
                 <td><?php echo escape($product["brand"])?></td>
                 <td><?php echo escape($product["category"])?></td>
-                <td><a href="update-single-product.php?product_ID=<?php echo escape($product['product_ID']);?>">Edit</a></td>
+                <td><a href="../update-single-product.php?product_ID=<?php echo escape($product['product_ID']);?>">Edit</a></td>
                 <td><a href="productModify.php?product_ID=<?php echo escape($product['product_ID']);?>">Delete</a></td>
 
             </tr>
@@ -87,4 +87,4 @@ $products = fetchAllProducts($connection);
         </tbody>
     </table>
 <?php endif; ?>
-<?php require 'templates/footer.php'?>
+<?php require '../templates/footer.php' ?>

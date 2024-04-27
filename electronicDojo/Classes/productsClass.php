@@ -145,7 +145,7 @@ class Phone extends Product
         echo "<p class='product-category'>You will earn " . $this->getLoyaltyPoints() . " Loyatly points from this purchase</p>";
         echo "</div>";
         echo "<div class='add-to-cart'>";
-        echo "<form method='post' action='/electronicDojo/cart.php'>";
+        echo "<form method='post' action='../order/cart.php'>";
         echo "<input type='hidden' name='product_ID' value=" . $productID . ">";
         echo "<button type='submit' class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> Add to cart</button>";
         echo "</form>";
@@ -213,7 +213,7 @@ class laptop extends Product
         echo "<p class='product-category'>You will earn " . $this->getLoyaltyPoints() . " Loyatly points from this purchase</p>";
         echo "</div>";
         echo "<div class='add-to-cart'>";
-        echo "<form method='post' action='/electronicDojo/cart.php'>";
+        echo "<form method='post' action='../order/cart.php'>";
         echo "<input type='hidden' name='product_ID' value=" . $productID . ">";
         echo "<button type='submit' class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> Add to cart</button>";
         echo "</form>";
@@ -281,7 +281,7 @@ class television extends Product
         echo "<p class='product-category'>You will earn " . $this->getLoyaltyPoints() . " Loyatly points from this purchase</p>";
         echo "</div>";
         echo "<div class='add-to-cart'>";
-        echo "<form method='post' action='/electronicDojo/cart.php'>";
+        echo "<form method='post' action='../order/cart.php'>";
         echo "<input type='hidden' name='product_ID' value=" . $productID . ">";
         echo "<button type='submit' class='add-to-cart-btn'><i class='fa fa-shopping-cart'></i> Add to cart</button>";
         echo "</form>";

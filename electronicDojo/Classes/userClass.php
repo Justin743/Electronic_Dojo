@@ -1,5 +1,5 @@
 <?php
-require "lib/sqlQueries.php";
+require 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/lib/sqlQueries.php';
 class userClass{
     private $ID;
     private $firstname;
@@ -262,8 +262,8 @@ function registerUser($data, &$errorMessages){
 function createAdmin()
 {
     try {
-        require "common.php";
-        require_once "src/DBconnect.php";
+        require "../src/common.php";
+        require_once "../src/DBconnect.php";
 
 
         $checkAdmin = checkAdminQ();

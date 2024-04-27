@@ -2,12 +2,12 @@
 //Starts the session.
 session_start();
 
-require_once('lib/functions.php');
+require_once('../lib/functions.php');
 
 //Calls the function getUserDetails using the UserID session key, and assigns result to userDetails variable.
 $userDetails = getUserDetails($_SESSION['UserID']);
 
-include "templates/header.php";
+include "../templates/header.php";
 ?>
 
 <body>
@@ -17,12 +17,12 @@ include "templates/header.php";
     <p>Last Name: <?php echo ($userDetails['lastname']); ?></p>
     <p>Email: <?php echo ($userDetails['email']); ?></p>
     <p>Address: <?php echo ($userDetails['address']); ?></p>
-    <a href="/electronicDojo/viewOrder.php">My Orders</a>
+    <a href="../order/viewOrder.php">My Orders</a>
 
     <!-- Log out button -->
-    <form action="logout.php" method="post" name="Logout_Form">
+    <form action="../user/logout.php" method="post" name="Logout_Form">
         <button name="Submit" value="Logout" type="submit">Log out</button>
     </form>
 </body>
 
-<?php include "templates/footer.php" ?>
+<?php include "../templates/footer.php" ?>

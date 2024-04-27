@@ -1,10 +1,10 @@
-<?php require "templates/noLoginHeader.php" ?>
+<?php require "../templates/noLoginHeader.php" ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/css" rel="stylesheet" href="css/aboutUs.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/aboutUs.css"/>
 </head>
 <body>
 
@@ -57,5 +57,5 @@
 </body>
 </html>
 
-<?php include "templates/footer.php" ?>
+<?php include "../templates/footer.php" ?>
 

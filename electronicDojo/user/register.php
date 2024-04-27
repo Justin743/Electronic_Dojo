@@ -3,16 +3,16 @@ $errorMessages = [];
 
     if (isset($_POST['submit'])){
 
-        require_once "Classes/userClass.php";
+        require_once "../Classes/userClass.php";
 
-        require "common.php";
+        require "../src/common.php";
         registerUser($_POST, $errorMessages);
 
 
     }
 ?>
 
-<?php require "templates/noLoginHeader.php"; ?>
+<?php require "../templates/noLoginHeader.php"; ?>
     <div class="register">
     <form method="post">
         <div class="container">
@@ -61,5 +61,5 @@ $errorMessages = [];
     </form>
     </div>
 
-<?php include "templates/footer.php";
+<?php include "../templates/footer.php";
 

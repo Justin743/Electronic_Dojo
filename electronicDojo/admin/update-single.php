@@ -1,13 +1,13 @@
 
 <?php
 session_start();
-require "common.php";
-require "Classes/userClass.php";
+require "../src/common.php";
+require "../Classes/userClass.php";
 
 
 if (isset($_POST['submit'])) {
     try {
-        require_once "src/DBconnect.php";
+        require_once "../src/DBconnect.php";
 
         $user =[
             "ID" => escape($_POST['ID']),
@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
 
 if (isset($_GET['ID'])) {
     try{
-        require_once "src/DBconnect.php";
+        require_once "../src/DBconnect.php";
 
         $id = $_GET['ID'];
 
@@ -71,7 +71,7 @@ if (isset($_GET['ID'])) {
 }
 ?>
 
-<?php require "templates/adminHeader.php"?>
+<?php require "../templates/adminHeader.php" ?>
 
 <?php if (isset($_POST['submit']) && $statement) : ?>
     <?php echo escape($_POST['firstname']); ?> successfully updated.

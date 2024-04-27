@@ -1,15 +1,15 @@
 <?php
 session_start();
-require 'templates/adminHeader.php';
-require 'lib/sqlQueries.php';
-require 'lib/functions.php';
+require '../templates/adminHeader.php';
+require '../lib/sqlQueries.php';
+require '../lib/functions.php';
 ?>
 
 
 
 <?php
 if(isset($_GET['ID'])){
-    require_once "src/DBconnect.php";
+    require_once "../src/DBconnect.php";
 
     $id = $_GET["ID"];
 
@@ -23,8 +23,8 @@ if(isset($_GET['ID'])){
 }
 if(isset($_POST['submit'])){
     try {
-        require 'common.php';
-        require_once 'src/DBconnect.php';
+        require '../src/common.php';
+        require_once '../src/DBconnect.php';
 
         $sql = "SELECT user.* , address, loyaltyPoints
             FROM user
@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
 if (isset($_POST['submit'])) {
     if ($result && $statement->rowCount() > 0){
         ?>
-            <link type="text/css" rel="stylesheet" href="css/update.css">
+            <link type="text/css" rel="stylesheet" href="../css/update.css">
         <h2>Results</h2>
         <table>
             <thead>
@@ -92,5 +92,5 @@ if (isset($_POST['submit'])) {
 
 </form>
 
-<a href="index.php">Back to Homepage</a>
+<a href="../home/index.php">Back to Homepage</a>
 

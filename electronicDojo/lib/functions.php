@@ -1,5 +1,7 @@
 <?php
 
+require 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/DBconnect.php';
+
 function get_connection()
 {
     require 'config.php';
