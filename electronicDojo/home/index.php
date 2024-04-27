@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (isset($_SESSION['Active']) && $_SESSION['Active'] == true ){
-    require "templates/header.php";
+    require "../templates/header.php";
 } else if (isset($_SESSION['AdminActive']) && $_SESSION['AdminActive'] == true){
-    require 'templates/adminHeader.php';
+    require '../templates/adminHeader.php';
 }else
-    require "templates/noLoginHeader.php"?>
+    require "../templates/noLoginHeader.php" ?>
 
     <body>
 
@@ -24,11 +24,11 @@ if (isset($_SESSION['Active']) && $_SESSION['Active'] == true ){
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
-                            <img src="image/shop01.png" alt="">
+                            <img src="../image/shop01.png" alt="">
                         </div>
                         <div class="shop-body">
                             <h3>New Laptop<br>Collection</h3>
-                            <a href="products.php" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="../product/products.php" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -38,11 +38,11 @@ if (isset($_SESSION['Active']) && $_SESSION['Active'] == true ){
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
-                            <img src="image/phoneImage1.png" alt="">
+                            <img src="../image/phoneImage1.png" alt="">
                         </div>
                         <div class="shop-body">
                             <h3>New Phone<br>Collection</h3>
-                            <a href="products.php" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="../product/products.php" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -52,11 +52,11 @@ if (isset($_SESSION['Active']) && $_SESSION['Active'] == true ){
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
-                            <img src="image/TVImage.webp" alt="">
+                            <img src="../image/TVImage.webp" alt="">
                         </div>
                         <div class="shop-body">
                             <h3>New Camera<br>Collection</h3>
-                            <a href="products.php" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="../product/products.php" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ if (isset($_SESSION['Active']) && $_SESSION['Active'] == true ){
 
                         <h2 class="text-uppercase">crazy hot deals</h2>
                         <p>For all your electronic needs</p>
-                        <a class="primary-btn cta-btn" href="products.php">Shop now</a>
+                        <a class="primary-btn cta-btn" href="../product/products.php">Shop now</a>
                         <?php
 
                         if (!isset($_SESSION['Active']) && !isset($_SESSION['AdminActive'])){
@@ -96,4 +96,4 @@ if (isset($_SESSION['Active']) && $_SESSION['Active'] == true ){
     </div>
     <!-- /HOT DEAL SECTION -->
     </body>
-<?php include "templates/footer.php"?>
+<?php include "../templates/footer.php" ?>

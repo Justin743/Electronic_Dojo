@@ -1,5 +1,5 @@
 <?php
-require_once 'src/sessions.php';
+require_once '../src/sessions.php';
 
 //Creates a new instance of session.
 $session = new session();

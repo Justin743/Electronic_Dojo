@@ -24,9 +24,9 @@
                     <div class="footer">
                         <h3 class="footer-title">Categories</h3>
                         <ul class="footer-links">
-                            <li><a href="/electronicDojo/products.php#tab1">Phones</a></li>
-                            <li><a href="/electronicDojo/products.php#tab2">Laptops</a></li>
-                            <li><a href="/electronicDojo/products.php#tab3">TVs</a></li>
+                            <li><a href="../product/products.php#tab1">Phones</a></li>
+                            <li><a href="../product/products.php#tab2">Laptops</a></li>
+                            <li><a href="../product/products.php#tab3">TVs</a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                     <div class="footer">
                         <h3 class="footer-title">Information</h3>
                         <ul class="footer-links">
-                            <li><a href="/electronicDojo/aboutUS.php">About Us</a></li>
+                            <li><a href="../home/aboutUS.php">About Us</a></li>
                             <li>
                                 <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJlFDFPnhXxFVLHDMbDXfGPGBdkhZxRbGhJbQPbVqvdgwTGwpbgmdfNwgwDLSsLTczQWZXB">Contact
                                     Us</a></li>
@@ -49,9 +49,8 @@
                     <div class="footer">
                         <h3 class="footer-title">Service</h3>
                         <ul class="footer-links">
-                            <li><a href="/electronicDojo/profile.php">My Account</a></li>
-                            <li><a href="#">View Cart</a></li>
-                            <li><a href="/electronicDojo/viewOrder.php">My Orders</a></li>
+                            <li><a href="../user/profile.php">My Account</a></li>
+                            <li><a href="../order/viewOrder.php">My Orders</a></li>
                         </ul>
                     </div>
                 </div>

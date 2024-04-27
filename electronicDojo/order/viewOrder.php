@@ -2,9 +2,9 @@
 //Start the session.
 session_start();
 
-require "lib/functions.php";
-require "Classes/productsClass.php";
-require "templates/header.php";
+require "../lib/functions.php";
+require "../Classes/productsClass.php";
+require "../templates/header.php";
 
 //Assigns UserID key from the session to userId variable.
 $userId = $_SESSION['UserID'];
@@ -53,4 +53,4 @@ $orders = displayOrders($userId);
         </div>
     </div>
 </div>
-<?php include "templates/footer.php"; ?>
+<?php include "../templates/footer.php"; ?>

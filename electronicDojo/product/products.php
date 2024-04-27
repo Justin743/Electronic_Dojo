@@ -5,19 +5,19 @@ session_start();
 //Checks if admin is logged in, if not relocate to login.php.
 if (!(isset($_SESSION['AdminActive']) && $_SESSION['AdminActive'] === true) &&
     !(isset($_SESSION['Active']) && $_SESSION['Active'] === true)) {
-    header("location:login.php");
+    header("location: ../user/login.php");
     exit;
 }
 
 //If the admin session is active then it will use admin header, else if a normal user is logged in then it will use normal header.
 if (isset($_SESSION['AdminActive']) && $_SESSION['AdminActive'] === true) {
-    include('templates/adminHeader.php');
+    include('../templates/adminHeader.php');
 } else if (isset($_SESSION['Active']) && $_SESSION['Active'] === true) {
-    include('templates/header.php');
+    include('../templates/header.php');
 }
 
-require "lib/functions.php";
-require "Classes/productSClass.php";
+require "../lib/functions.php";
+require "../Classes/productsClass.php";
 
 //Variable porducts calls get_products function, to retrieve products from DB.
 $products = get_products();
@@ -107,4 +107,4 @@ $products = get_products();
     </div>
 </div>
 
-<?php require "templates/footer.php"; ?>
+<?php require "../templates/footer.php"; ?>

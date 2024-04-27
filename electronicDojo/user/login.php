@@ -2,7 +2,7 @@
 //Starts the session.
 session_start();
 
-require_once('lib/functions.php');
+require_once('../lib/functions.php');
 ?>
 
 <?php
@@ -25,7 +25,7 @@ if (isset($_POST['Submit'])) {
             $_SESSION['Email'] = $admin['email'];
 
             //Redirect to index.php
-            header("location: index.php");
+            header("location: ../home/index.php");
             exit;
 
             //Else if the details do not belong to admin, it will check if details belong to normal user.
@@ -45,7 +45,7 @@ if (isset($_POST['Submit'])) {
                 $_SESSION['Email'] = $user['email'];
                 $_SESSION['firstname'] = $userData['firstname'];
 
-                header("location: index.php");
+                header("location: ../home/index.php");
 
                 exit;
 
@@ -59,7 +59,7 @@ if (isset($_POST['Submit'])) {
         echo $e->getMessage();
     }
 }
-require "templates/nologinHeader.php";
+require "../templates/noLoginHeader.php";
 ?>
 
 <body>

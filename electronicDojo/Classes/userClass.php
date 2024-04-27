@@ -1,5 +1,5 @@
 <?php
-require "lib/sqlQueries.php";
+require 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/lib/sqlQueries.php';
 class userClass{
     private $ID;
     private $firstname;
@@ -159,7 +159,7 @@ function registerUser($data, &$errorMessages){
     $passPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
 
     try {
-        require_once "src/DBconnect.php";
+        require_once "../src/DBconnect.php";
 
         if (!preg_match($pattern, $data['firstname'])){
             $fNameError = "Invalid first name: Special characters or numbers are not allowed";
@@ -253,7 +253,7 @@ function registerUser($data, &$errorMessages){
                 'loyaltyPoints' => $defaultLPoints,
                 'userID' => $customer->getUserID()
             ]);
-            header("location:login.php");
+            header("location: ../home/login.php");
 
             exit;
 
@@ -268,8 +268,8 @@ function registerUser($data, &$errorMessages){
 function createAdmin()
 {
     try {
-        require "common.php";
-        require_once "src/DBconnect.php";
+        require "../src/common.php";
+        require_once "../src/DBconnect.php";
 
 
         $checkAdmin = checkAdminQ();

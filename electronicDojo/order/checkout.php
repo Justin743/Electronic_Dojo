@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-include 'templates/header.php';
-include "lib/functions.php";
-include "Classes/productsClass.php";
+include '../templates/header.php';
+include "../lib/functions.php";
+include "../Classes/productsClass.php";
 
 
 
@@ -27,6 +27,6 @@ if (isset($_POST['placeorder']) && !empty($_SESSION['Active'])) {
 
 }
 
-include 'templates/footer.php';
+include '../templates/footer.php';
 ?>
 

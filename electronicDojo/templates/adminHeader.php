@@ -24,20 +24,20 @@ if ($_SESSION['AdminActive'] == false) {
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"/>
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/slick-theme.css"/>
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/nouislider.min.css"/>
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/style.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,7 +63,7 @@ if ($_SESSION['AdminActive'] == false) {
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="#" class="logo">
-                            <img src="./image/eLogo.png" alt="">
+                            <img src="../image/eLogo.png" alt="">
 
                         </a>
                     </div>
@@ -90,7 +90,7 @@ if ($_SESSION['AdminActive'] == false) {
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
 
-                    <form action="logout.php" method="post" name="Logout_Form" class="form-signin">
+                    <form action="../user/logout.php" method="post" name="Logout_Form" class="form-signin">
                         <button name="Submit" value="Logout" class="button" type="submit">Log out</button>
                     </form>
 
@@ -113,10 +113,10 @@ if ($_SESSION['AdminActive'] == false) {
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="/electronicDojo/index.php">Home</a></li>
-                <li><a href="/electronicDojo/products.php">Products</a></li>
-                <li><a href="/electronicDojo/edit.php">Read/Edit Users</a></li>
-                <li><a href="/electronicDojo/productModify.php">Add/Modfiy Products</a></li>
+                <li class="active"><a href="../home/index.php">Home</a></li>
+                <li><a href="../product/products.php">Products</a></li>
+                <li><a href="../admin/edit.php">Read/Edit Users</a></li>
+                <li><a href="../admin/productModify.php">Add/Modfiy Products</a></li>
 
             </ul>
             <!-- /NAV -->

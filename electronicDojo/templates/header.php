@@ -3,7 +3,7 @@
 <?php
 //Checks of the user is logged in, if not it will redirect to the login page.
 if ($_SESSION['Active'] == false) {
-    header("location:login.php");
+    header("location: home/login.php");
     exit;
 }
 ?>
@@ -24,20 +24,20 @@ if ($_SESSION['Active'] == false) {
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"/>
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/slick-theme.css"/>
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/nouislider.min.css"/>
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/style.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -91,7 +91,7 @@ if ($_SESSION['Active'] == false) {
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
                         <div>
-                            <a href="/electronicDojo/profile.php"> <i class="fa fa-user-o"></i>
+                            <a href="../user/profile.php"> <i class="fa fa-user-o"></i>
                                 <span>Profile</span>
                                 <div class="qty"></div>
                             </a>
@@ -100,7 +100,7 @@ if ($_SESSION['Active'] == false) {
                         <!-- Cart -->
                         <div class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                <a href='/electronicDojo/cart.php'><i class="fa fa-shopping-cart"></i></a>
+                                <a href='../order/cart.php'><i class="fa fa-shopping-cart"></i></a>
                                 <span>Your Cart</span>
                                 <div class="qty"></div>
                             </a>
@@ -135,8 +135,8 @@ if ($_SESSION['Active'] == false) {
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="/electronicDojo/index.php">Home</a></li>
-                <li><a href="/electronicDojo/products.php">Products</a></li>
+                <li class="active"><a href="../home/index.php">Home</a></li>
+                <li><a href="../product/products.php">Products</a></li>
             </ul>
             <!-- /NAV -->
         </div>

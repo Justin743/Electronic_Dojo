@@ -3,7 +3,7 @@
 
 session_start();
 
-include 'templates/header.php';
+include '../templates/header.php';
 
 
 
@@ -12,7 +12,7 @@ $loyaltyPtsTotal = 0.00;
 
 
 if (isset($_POST['product_ID'])){
-    require_once 'src/DBconnect.php';
+    require_once '../src/DBconnect.php';
 
     $prodID = $_POST['product_ID'];
 
@@ -53,7 +53,7 @@ if (isset($_POST['product_ID'])){
 
 ?>
 
-<link type="text/css" rel="stylesheet" href="css/cart.css">
+<link type="text/css" rel="stylesheet" href="../css/cart.css">
 
 <div class="cart-list">
     <div class="container">
@@ -102,7 +102,7 @@ if (isset($_POST['product_ID'])){
             <span class="loyaltyPoints"><?=$loyaltyPtsTotal?></span>
         </div>
 
-        <form method="post" action="../electronicDojo/checkout.php">
+        <form method="post" action="checkout.php">
         <form method="post" action="checkout.php">
         <div class="add-to-cart-btn">
             <input type="hidden" name="product_ID" value="<?php echo $product['product_ID']?>">
@@ -114,7 +114,7 @@ if (isset($_POST['product_ID'])){
     </div>
     </div>
     </div>
-<?php require 'templates/footer.php'; ?>
+<?php require '../templates/footer.php'; ?>
 
 
 

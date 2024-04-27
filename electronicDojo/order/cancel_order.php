@@ -2,8 +2,8 @@
 //Starts the session.
 session_start();
 
-require "lib/functions.php";
-require "Classes/productsClass.php";
+require "../lib/functions.php";
+require "../Classes/productsClass.php";
 
 //Checks if cancel_order has been submitted.
 if (isset($_POST['cancel_order'])) {
