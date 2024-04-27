@@ -4,6 +4,7 @@
 session_start();
 
 include 'templates/header.php';
+include 'lib/functions.php';
 
 
 
@@ -14,9 +15,11 @@ $loyaltyPtsTotal = 0.00;
 if (isset($_POST['product_ID'])){
     require_once 'src/DBconnect.php';
 
+    $pdo = get_connection();
+
     $prodID = $_POST['product_ID'];
 
-    $statement = $connection->prepare('SELECT * FROM products WHERE product_id = ' .$prodID);
+    $statement = $pdo->prepare('SELECT * FROM products WHERE product_id = ' .$prodID);
     $statement->execute();
 
     $product = $statement->fetch(PDO::FETCH_ASSOC);
@@ -40,7 +43,7 @@ if (isset($_POST['product_ID'])){
 
     if ($products_in_cart){
         $prodID = implode(',', array_keys($products_in_cart));
-        $statement = $connection->query('SELECT * FROM products WHERE product_ID IN ('. $prodID . ')');
+        $statement = $pdo->query('SELECT * FROM products WHERE product_ID IN ('. $prodID . ')');
 
         $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
