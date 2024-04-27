@@ -29,7 +29,7 @@ if (isset($_POST['Submit'])) {
                 $_SESSION['UserID'] = $user['ID'];
                 $_SESSION['Email'] = $user['email'];
                 $_SESSION['firstname'] = $userData['firstname'];
-                header("location: products.php");
+                header("location: index.php");
                 exit;
             } else {
 

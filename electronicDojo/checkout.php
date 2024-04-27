@@ -6,7 +6,8 @@ include "lib/functions.php";
 include "Classes/productsClass.php";
 
 
-if (isset($_POST['placeorder'])) {
+
+if (isset($_POST['placeorder']) && !empty($_SESSION['Active'])) {
 
 
     $name = $_SESSION['firstname'];
@@ -22,7 +23,7 @@ if (isset($_POST['placeorder'])) {
     echo "</div>";
 
 } else {
-
+    echo "<h2>No product</h2>";
 
 }
 

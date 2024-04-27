@@ -41,6 +41,7 @@ LEFT JOIN
     return $products;
 }
 
+
 function displayOrders($userId)
 {
     $pdo = get_connection();

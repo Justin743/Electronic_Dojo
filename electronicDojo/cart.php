@@ -5,10 +5,7 @@ session_start();
 
 include 'templates/header.php';
 
-if (!isset($_SESSION['Active']) || $_SESSION['Active'] !== true) {
-    header("Location: login.php");
-    exit;
-}
+
 
 $priceTotal = 0.00;
 $loyaltyPtsTotal = 0.00;
@@ -24,17 +21,16 @@ if (isset($_POST['product_ID'])){
 
     $product = $statement->fetch(PDO::FETCH_ASSOC);
 
+    //Checks if product exists
     if ($product){
+        //Checks if the session[active] key is set and if the session variable is set to an array
         if (isset($_SESSION['Active']) && is_array($_SESSION['Active'])){
+            //Checks if the session is not set to an array and sets it to an array id not
             if (!isset($_SESSION['Active'])){
-                $_SESSION['Active'] = [];
-            }else{
-                $_SESSION['Active'][$prodID] = 1;
-                $message = "This product has been added to your cart";
+                $_SESSION['Active'] = array();
             }
         }else{
             $_SESSION['Active'] = array($prodID => 1);
-            $message = "This product has been added to your cart";
         }
     }
 
@@ -106,7 +102,7 @@ if (isset($_POST['product_ID'])){
             <span class="loyaltyPoints"><?=$loyaltyPtsTotal?></span>
         </div>
         <form method="post" action="checkout.php">
-        <div class="primary-btn">
+        <div class="add-to-cart-btn">
             <input type="hidden" name="product_ID" value="<?php echo $product['product_ID']?>">
             <input type="submit" value="Checkout" id="placeorder" name="placeorder">
         </div>
