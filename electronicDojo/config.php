@@ -1,4 +1,5 @@
 <?php
+//Config file containing DB details.
 $host   ="localhost";
 $username   ="root";
 $password   ="Juoz9988/";

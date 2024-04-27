@@ -1,4 +1,5 @@
-<!-- FOOTER -->
+<!-- This is the footer used for the both type of users -->
+
 <footer id="footer">
     <!-- top footer -->
     <div class="section">
@@ -9,7 +10,8 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">About Us</h3>
-                        <p>We are a local irish buissness, here to supply our customers with all the latest tech needs.</p>
+                        <p>We are a local irish buissness, here to supply our customers with all the latest tech
+                            needs.</p>
                         <ul class="footer-links">
                             <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
                             <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
@@ -36,7 +38,9 @@
                         <h3 class="footer-title">Information</h3>
                         <ul class="footer-links">
                             <li><a href="/electronicDojo/aboutUS.php">About Us</a></li>
-                            <li><a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJlFDFPnhXxFVLHDMbDXfGPGBdkhZxRbGhJbQPbVqvdgwTGwpbgmdfNwgwDLSsLTczQWZXB">Contact Us</a></li>
+                            <li>
+                                <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJlFDFPnhXxFVLHDMbDXfGPGBdkhZxRbGhJbQPbVqvdgwTGwpbgmdfNwgwDLSsLTczQWZXB">Contact
+                                    Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -74,7 +78,9 @@
                     </ul>
                     <span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                                                                    aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
                 </div>

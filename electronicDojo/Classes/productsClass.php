@@ -1,5 +1,8 @@
 <?php
-class Product {
+
+//New product class with detials for the products.
+class Product
+{
     private $product_ID;
     private $product_name;
     private $bio;
@@ -8,77 +11,96 @@ class Product {
     private $brand;
     private $category;
 
-    public function getProductID() {
+    //Getters and setters for each variable.
+    public function getProductID()
+    {
         return $this->product_ID;
     }
 
-    public function setProductID($product_ID) {
+    public function setProductID($product_ID)
+    {
         $this->product_ID = $product_ID;
     }
 
-    public function getProductName() {
+    public function getProductName()
+    {
         return $this->product_name;
     }
 
-    public function setProductName($product_name) {
+    public function setProductName($product_name)
+    {
         $this->product_name = $product_name;
     }
 
-    public function getBio() {
+    public function getBio()
+    {
         return $this->bio;
     }
 
-    public function setBio($bio) {
+    public function setBio($bio)
+    {
         $this->bio = $bio;
     }
 
-    public function getPrice() {
+    public function getPrice()
+    {
         return $this->price;
     }
 
-    public function setPrice($price) {
-        if ($price < 0){
-            throw new \InvalidArgumentException("Price must be a positive number");
+    public function setPrice($price)
+    {
+        if ($price < 0) {
+            throw new InvalidArgumentException("Price must be a positive number");
         }
         $this->price = $price;
     }
 
-    public function getLoyaltyPoints() {
+    public function getLoyaltyPoints()
+    {
         return $this->loyalty_points;
     }
 
-    public function setLoyaltyPoints($loyalty_points) {
+    public function setLoyaltyPoints($loyalty_points)
+    {
         $this->loyalty_points = $loyalty_points;
     }
 
-    public function getBrand() {
+    public function getBrand()
+    {
         return $this->brand;
     }
 
-    public function setBrand($brand) {
+    public function setBrand($brand)
+    {
         $this->brand = $brand;
     }
 
-    public function getCategory() {
+    public function getCategory()
+    {
         return $this->category;
     }
 
-    public function setCategory($category) {
+    public function setCategory($category)
+    {
         $this->category = $category;
     }
 }
 
-class Phone extends Product {
+//Class phone inherits details from products and has seperate variables.
+class Phone extends Product
+{
     private $phone_ID;
     private $manufacturer;
     private $image;
 
-
-    public function getPhoneID() {
+    //Getters and setters for seperate variables.
+    public function getPhoneID()
+    {
         return $this->phone_ID;
     }
 
-    public function setPhoneID($phone_ID) {
+    public function setPhoneID($phone_ID)
+    {
         $this->phone_ID = $phone_ID;
     }
 
@@ -102,10 +124,9 @@ class Phone extends Product {
         $this->image = $image;
     }
 
-    public function displayPhone($productID) {
-
-
-
+    //displayPhone function to display phone details.
+    public function displayPhone($productID)
+    {
         echo "<h2 id='tab1'></h2>";
         echo "<div class='product'>";
         echo "<div class='product-img'>";
@@ -133,11 +154,14 @@ class Phone extends Product {
     }
 }
 
-class laptop extends Product {
+//Class laptop inherits details from products and has seperate variables.
+class laptop extends Product
+{
     private $laptop_ID;
     private $manufacturer;
     private $image;
 
+    //Getters and setters for seperate variables.
     public function getLaptopID()
     {
         return $this->laptop_ID;
@@ -168,8 +192,9 @@ class laptop extends Product {
         $this->image = $image;
     }
 
-    public function displayLaptop($productID) {
-
+    //displayLaptop function used to display laptop details.
+    public function displayLaptop($productID)
+    {
         echo "<h2 id='tab2'></h2>";
         echo "<div class='product'>";
         echo "<div class='product-img'>";
@@ -197,12 +222,14 @@ class laptop extends Product {
     }
 }
 
-
-class television extends Product {
+//Class television inherits details from products and has seperate variables.
+class television extends Product
+{
     private $television_ID;
     private $manufacturer;
     private $image;
 
+    //Getters and setters for seperate variables.
     public function getTelevisionID()
     {
         return $this->television_ID;
@@ -233,8 +260,9 @@ class television extends Product {
         $this->image = $image;
     }
 
-    public function displayTelevision($productID) {
-
+    //displayTelevision function used to display television details.
+    public function displayTelevision($productID)
+    {
         echo "<h2 id='tab3'></h2>";
         echo "<div class='product'>";
         echo "<div class='product-img'>";
@@ -261,15 +289,20 @@ class television extends Product {
         echo "</div>";
     }
 }
-class PaymentMethod {
+
+class PaymentMethod
+{
     private $payment_ID;
     private $amount;
 
-    public function __construct($payment_ID, $amount) {
+    public function __construct($payment_ID, $amount)
+    {
         $this->payment_ID = $payment_ID;
         $this->amount = $amount;
     }
-    public function getPaymentID() {
+
+    public function getPaymentID()
+    {
         return $this->payment_ID;
     }
 
@@ -277,43 +310,51 @@ class PaymentMethod {
     {
         $this->payment_ID = $payment_ID;
     }
+
     public function getAmount()
     {
         return $this->amount;
     }
+
     public function setAmount($amount)
     {
         $this->amount = $amount;
     }
 }
 
-class Card extends PaymentMethod {
+class Card extends PaymentMethod
+{
     private $card_ID;
     private $name;
     private $type;
     private $card_number;
 
 
-    public function __construct($card_ID, $name, $card_number) {
+    public function __construct($card_ID, $name, $card_number)
+    {
         $this->card_ID = $card_ID;
         $this->name = $name;
         $this->card_number = $card_number;
 
     }
 
-    public function getCardID() {
+    public function getCardID()
+    {
         return $this->card_ID;
     }
 
-    public function setCardID($card_ID) {
+    public function setCardID($card_ID)
+    {
         $this->card_ID = $card_ID;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
@@ -328,42 +369,39 @@ class Card extends PaymentMethod {
     }
 
 
-    public function getCardNumber() {
+    public function getCardNumber()
+    {
         return $this->card_number;
     }
 
-    public function setCardNumber($card_number) {
+    public function setCardNumber($card_number)
+    {
         $this->card_number = $card_number;
     }
 }
 
-class Order {
+//Order class for displaying order.
+class Order
+{
     private $order_ID;
     private $date_of_order;
     private $total;
     private $customer_ID;
-
     private $product_ID;
 
+    //Full aggregation, using details from products do display in order.
     private $products = array();
 
-    /**
-     * @return mixed
-     */
+    //getters and setters for variables.
     public function getProductID()
     {
         return $this->product_ID;
     }
 
-    /**
-     * @param mixed $product_ID
-     */
     public function setProductID($product_ID): void
     {
         $this->product_ID = $product_ID;
     }
-
-
 
     public function getCustomerID()
     {
@@ -375,41 +413,53 @@ class Order {
         $this->customer_ID = $customer_ID;
     }
 
-    public function getOrderID() {
+    public function getOrderID()
+    {
         return $this->order_ID;
     }
 
-    public function setOrderID($order_ID) {
+    public function setOrderID($order_ID)
+    {
         $this->order_ID = $order_ID;
     }
 
-    public function getDateOfOrder() {
+    public function getDateOfOrder()
+    {
         return $this->date_of_order;
     }
 
-    public function setDateOfOrder($date_of_order) {
+    public function setDateOfOrder($date_of_order)
+    {
         $this->date_of_order = $date_of_order;
     }
 
-    public function getTotal() {
+    public function getTotal()
+    {
         return $this->total;
     }
 
-    public function setTotal($total) {
+    public function setTotal($total)
+    {
         $this->total = $total;
     }
 
-    public function addProduct(Product $product) {
+    public function addProduct(Product $product)
+    {
         $this->products[] = $product;
     }
 
-    public function displayOrder() {
+    //displayOrder function used to display an order.
+    public function displayOrder()
+    {
         echo "<h2>Customer ID: " . $this->getCustomerID() . "</h2>";
         echo "<h2>Order ID: " . $this->getOrderID() . "</h2>";
         echo "<p>Date of Order: " . $this->getDateOfOrder() . "</p>";
 
+        //Calls the calculateShippingCost function to preform a calculation based of price for shipping cost for each order.
         $shippingCost = $this->calculateShippingCost();
+        //Adds shipping cost to total.
         $totalWithShipping = $this->getTotal() + $shippingCost;
+        //Sets the total to be displayed to contain calculation.
         $this->setTotal($totalWithShipping);
 
         echo "<p>Total: $" . $this->getTotal() . "</p>";
@@ -424,17 +474,20 @@ class Order {
             echo "</li>";
         }
         echo "</ul>";
-
         echo '<form method="post" action="cancel_order.php">';
         echo '<input type="hidden" name="order_id" value="' . $this->getOrderID() . '">';
         echo '<button type="submit" name="cancel_order" >Cancel Order</button>';
         echo '</form>';
     }
 
-    public function calculateShippingCost() {
+    //Function to calculate shipping cost based of price.
+    public function calculateShippingCost()
+    {
+        //totalPrice variable gets information from the getter for product total.
         $totalPrice = $this->getTotal();
         $shippingCost = 0;
 
+        //Basis path calculation.
         if ($totalPrice < 500) {
             $shippingCost = 20;
         } elseif ($totalPrice >= 500 && $totalPrice < 750) {
@@ -449,6 +502,7 @@ class Order {
             $shippingCost = 0;
         }
 
+        //Return the shipping cost.
         return $shippingCost;
     }
 }

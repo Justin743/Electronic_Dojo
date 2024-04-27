@@ -7,81 +7,51 @@ class userClass{
     private $email;
     private $password;
 
-    /**
-     * @return mixed
-     */
     public function getID()
     {
         return $this->ID;
     }
 
-    /**
-     * @param mixed $ID
-     */
     public function setID($ID)
     {
         $this->ID = $ID;
     }
 
-    /**
-     * @return mixed
-     */
     public function getFirstname()
     {
         return $this->firstname;
     }
 
-    /**
-     * @param mixed $firstname
-     */
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLastname()
     {
         return $this->lastname;
     }
 
-    /**
-     * @param mixed $lastname
-     */
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
     }
 
-    /**
-     * @return mixed
-     */
     public function getEmail()
     {
         return $this->email;
     }
 
-    /**
-     * @param mixed $email
-     */
     public function setEmail($email)
     {
         $this->email = $email;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPassword()
     {
         return $this->password;
     }
 
-    /**
-     * @param mixed $password
-     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -94,10 +64,6 @@ class userClass{
         $this->email = $email;
         $this->password = $password;
     }
-
-    /**
-     * @return mixed
-     */
 }
 
 class admin extends userClass
@@ -106,33 +72,21 @@ class admin extends userClass
 
     private $userID;
 
-    /**
-     * @return mixed
-     */
     public function getUserID()
     {
         return $this->userID;
     }
 
-    /**
-     * @param mixed $userID
-     */
     public function setUserID($userID)
     {
         $this->userID = $userID;
     }
 
-    /**
-     * @return mixed
-     */
     public function getAdminLevel()
     {
         return $this->adminLevel;
     }
 
-    /**
-     * @param mixed $adminLevel
-     */
     public function setAdminLevel($adminLevel)
     {
         $this->adminLevel = $adminLevel;
@@ -146,8 +100,6 @@ class admin extends userClass
     }
 }
 
-
-
 class customer extends userClass
 {
 
@@ -159,55 +111,35 @@ class customer extends userClass
 
     private $userID;
 
-    /**
-     * @return mixed
-     */
     public function getUserID()
     {
         return $this->userID;
     }
 
-    /**
-     * @param mixed $userID
-     */
     public function setUserID($userID)
     {
         $this->userID = $userID;
     }
 
-
-    /**
-     * @return mixed
-     */
     public function getLoyaltyPoints()
     {
         return $this->loyaltyPoints;
     }
 
-    /**
-     * @param mixed $loyaltyPoints
-     */
     public function setLoyaltyPoints($loyaltyPoints)
     {
         $this->loyaltyPoints = $loyaltyPoints;
     }
 
-    /**
-     * @return mixed
-     */
     public function getAddress()
     {
         return $this->address;
     }
 
-    /**
-     * @param mixed $address
-     */
     public function setAddress($address)
     {
         $this->address = $address;
     }
-
 
     public function __construct($firstname , $lastname , $email , $password , $address , $loyaltyPoints , $userID)
     {
@@ -215,8 +147,6 @@ class customer extends userClass
         $this->address = $address;
         $this->userID = $userID;
         $this->loyaltyPoints = $loyaltyPoints;
-
-
     }
 }
 
@@ -227,8 +157,6 @@ function registerUser($data, &$errorMessages){
 
     $addressPattern = "/^[a-zA-Z0-9'\s]*$/";
     $passPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
-
-
 
     try {
         require_once "C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/DBconnect.php";

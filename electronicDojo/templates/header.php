@@ -1,5 +1,8 @@
+<!-- This is the header a normal user will see -->
+
 <?php
-if($_SESSION['Active'] == false){
+//Checks of the user is logged in, if not it will redirect to the login page.
+if ($_SESSION['Active'] == false) {
     header("location:login.php");
     exit;
 }
@@ -60,7 +63,7 @@ if($_SESSION['Active'] == false){
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="#" class="logo">
-                             <img src="./image/eLogo.png" alt="">
+                            <img src="./image/eLogo.png" alt="">
 
                         </a>
                     </div>
