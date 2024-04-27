@@ -1,19 +1,7 @@
 <?php
 
-require 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/DBconnect.php';
+require '../src/DBconnect.php';
 
-function get_connection()
-{
-    require 'config.php';
-
-    $pdo = new PDO(
-        $dsn, $username, $password, $options
-    );
-
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    return $pdo;
-}
 
 function get_products(){
 

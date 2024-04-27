@@ -1,8 +1,8 @@
 <!-- Used to connect to the DB -->
 
 <?php
-require 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/config.php';
 
+require '../src/config.php';
 //Make a new PDO object
 try{
     $connection = new PDO($dsn, $username, $password, $options);
@@ -15,7 +15,8 @@ try{
 <?php
 function get_connection()
 {
-    require 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/config.php';
+    require '../src/config.php';
+
 
     try {
         $pdo = new PDO(

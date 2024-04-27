@@ -3,8 +3,8 @@
 
 session_start();
 
-include 'templates/header.php';
-include 'lib/functions.php';
+include '../templates/header.php';
+include '../lib/functions.php';
 
 
 
@@ -13,7 +13,7 @@ $loyaltyPtsTotal = 0.00;
 
 
 if (isset($_POST['product_ID'])){
-    require_once 'src/DBconnect.php';
+    require_once '../src/DBconnect.php';
 
     $pdo = get_connection();
 
@@ -56,7 +56,7 @@ if (isset($_POST['product_ID'])){
 
 ?>
 
-    <link type="text/css" rel="stylesheet" href="css/cart.css">
+    <link type="text/css" rel="stylesheet" href="../css/cart.css">
 
     <div class="cart-list">
         <div class="container">
@@ -117,4 +117,4 @@ if (isset($_POST['product_ID'])){
             </div>
         </div>
     </div>
-<?php require 'templates/footer.php'; ?>
+<?php require '../templates/footer.php'; ?>
