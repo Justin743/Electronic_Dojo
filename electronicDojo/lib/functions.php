@@ -2,7 +2,7 @@
 
 function get_connection()
 {
-    require 'config.php';
+    require 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/config.php';
 
     $pdo = new PDO(
         $dsn, $username, $password, $options
@@ -24,11 +24,11 @@ function get_products(){
     products.loyalty_points,
     products.brand,
     products.category,
-    COALESCE(phones.image, laptop.image, television.image) AS image
+    COALESCE(phone.image, laptop.image, television.image) AS image
 FROM 
     products 
 LEFT JOIN 
-    phones ON products.product_ID = phones.product_ID_phone
+    phone ON products.product_ID = phone.product_ID_phone
 LEFT JOIN 
     laptop ON products.product_ID = laptop.product_ID_laptop
 LEFT JOIN 
