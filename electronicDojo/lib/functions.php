@@ -1,10 +1,12 @@
 <?php
 
+
 require_once 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/DBconnect.php';
 
 //Function to get a product, using query to get info fromm DB.
 function get_products()
 {
+
     $pdo = get_connection();
 
     $query = "SELECT 
