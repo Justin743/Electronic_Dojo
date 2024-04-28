@@ -116,7 +116,7 @@ if ($_SESSION['AdminActive'] == false) {
                 <li class="active"><a href="../home/index.php">Home</a></li>
                 <li><a href="../product/products.php">Products</a></li>
                 <li><a href="../admin/edit.php">Read/Edit Users</a></li>
-                <li><a href="../admin/productModify.php">Add/Modfiy Products</a></li>
+                <li><a href="../admin/productModify.php">Modfiy Products</a></li>
 
             </ul>
             <!-- /NAV -->
