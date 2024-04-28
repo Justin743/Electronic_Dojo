@@ -7,6 +7,7 @@ include '../lib/functions.php';
 
 $priceTotal = 0.00;
 $loyaltyPtsTotal = 0.00;
+$productPrice = 0.00;
 
 if (isset($_POST['product_ID'])){
     require_once '../src/DBconnect.php';

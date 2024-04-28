@@ -1,5 +1,5 @@
 <?php
-require "C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/common.php";
+require "../src/common.php";
 require "../Classes/userClass.php";
 
 // Test data

@@ -1,8 +1,8 @@
 <?php
 //THIS IS VALIDATION TEST FOR CANCELING AN ORDER.
 
-require_once 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/lib/functions.php';
-require_once 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/DBconnect.php';
+require_once '../lib/functions.php';
+require_once '../src/DBconnect.php';
 
 echo "Test 1 : Canceling an order";
 echo "<br>";
@@ -11,7 +11,7 @@ echo "<br>";
 function cancelOrderTest(){
 
     //Order id to be canceled.
-    $orderId = 128;
+    $orderId = 135;
 
     try {
         //Get a connection and fetch results to see if the order exists.
