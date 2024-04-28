@@ -218,8 +218,11 @@ function registerUser($data, &$errorMessages)
     $statement_checkEmail->bindParam(':email', $checkEmail);
     $statement_checkEmail->execute();
 
+    //Sets the value of the check to a boolean.
+    $checkIfExist = (bool)$statement_checkEmail->fetchColumn();
+
     //If an email submitted matches an email in the database it throws an error.
-    if ($sql_checkEmail >= 1){
+    if ($checkIfExist){
         $errorMessages['emailError'] = "Email already exists. Please use a different email.";
     }
 
