@@ -1,9 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 3a3eeeec1ef671c17b5b7a2d18889efde979a86a
 require_once 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/DBconnect.php';
 
 //Function to get a product, using query to get info fromm DB.

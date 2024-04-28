@@ -488,7 +488,7 @@ class Order
         $shippingCost = 0;
 
         //Basis path calculation.
-        if ($totalPrice < 500) {
+        if ($totalPrice >0  && $totalPrice < 500) {
             $shippingCost = 20;
         } elseif ($totalPrice >= 500 && $totalPrice < 750) {
             $shippingCost = 15;
