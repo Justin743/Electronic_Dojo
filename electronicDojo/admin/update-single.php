@@ -3,11 +3,14 @@
 session_start();
 require "../src/common.php";
 require "../Classes/userClass.php";
+require "../lib/sqlQueries.php";
 
-
+//Function for updating user and customer table data in database
 if (isset($_POST['submit'])) {
     try {
         require_once "../src/DBconnect.php";
+
+        $pdo = get_connection();
 
         $user =[
             "ID" => escape($_POST['ID']),
@@ -17,16 +20,10 @@ if (isset($_POST['submit'])) {
             "password" => escape($_POST['password']),
         ];
 
-        $sql_User = "UPDATE user
-            SET ID = :ID,
-            firstname = :firstname,
-            lastname  = :lastname,
-            email     = :email,
-            password  = :password
-            WHERE ID = :ID";
+        $sql_User = updateUserQ();
 
 
-        $statement_User = $connection->prepare($sql_User);
+        $statement_User = $pdo->prepare($sql_User);
         $statement_User->execute($user);
 
         $customer = [
@@ -35,12 +32,9 @@ if (isset($_POST['submit'])) {
             "loyaltyPoints" => escape($_POST['loyaltyPoints'])
         ];
 
-        $sql_Customer = "UPDATE customer
-                SET address = :address,
-                    loyaltyPoints = :loyaltyPoints
-                    WHERE user_ID = :ID";
+        $sql_Customer = updateCustomerQ();
 
-        $statement_Customer = $connection->prepare($sql_Customer);
+        $statement_Customer = $pdo->prepare($sql_Customer);
         $statement_Customer->execute($customer);
 
     } catch (PDOException $error) {
@@ -48,22 +42,22 @@ if (isset($_POST['submit'])) {
     }
 }
 
+//Fetches data from database using user ID
 if (isset($_GET['ID'])) {
     try{
         require_once "../src/DBconnect.php";
+        $pdo = get_connection();
 
         $id = $_GET['ID'];
 
-        $sql = "SELECT user.* , address, loyaltyPoints FROM user 
-                INNER JOIN customer ON user.ID = customer.user_ID
-                WHERE ID = :ID";
-        $statement = $connection->prepare($sql);
+        $sql = readUserWithIDQ();
+        $statement = $pdo->prepare($sql);
         $statement->bindValue(":ID", $id);
         $statement->execute();
 
         $user = $statement->fetch(PDO::FETCH_ASSOC);
     }catch (PDOException $error){
-        echo $sql . "<br>" . $error->getMessage();
+        echo $error->getMessage();
     }
 }else{
     echo 'Error';

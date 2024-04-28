@@ -25,6 +25,7 @@ class userClass{
     //Setter methods in user and customer address have validation logic.
     public function setFirstname($firstname)
     {
+        //Throws an exception if a value set does not match the required pattern
         if (!preg_match("/^[a-zA-Z\s]*$/", $firstname)){
             throw new InvalidArgumentException("Invalid first name: Special characters are not allowed");
         }
@@ -360,4 +361,17 @@ function createAdmin()
         echo $e->getMessage();
     }
 }
+
+//Form validation adapted from: www.w3schools.com. (n.d.). PHP Forms Validate E-mail and URL.
+// [online] Available at: https://www.w3schools.com/php/php_form_url_email.asp.
+// [Accessed 30 Mar. 2024].
+//
+
+
+//Form validation for password adapted from:
+// Vincy. (2024) PHP Password Validation Check for Strength
+// [online], Available from:
+// <https://phppot.com/php/php-password-validation/#:~:text=The%20PHP%20preg_match%20function%20returns,is%20matched%20with%20this%20pattern.&text=This%20password%20validation%20returns%20true,a%20minimum%208%2Dcharacter%20length.> .
+// [Accessed 30 Mar. 2024].
+
 
