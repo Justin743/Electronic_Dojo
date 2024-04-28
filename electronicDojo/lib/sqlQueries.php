@@ -53,3 +53,35 @@ function checkEmailQ()
     return "SELECT COUNT(*) FROM user WHERE email = :email";
 }
 
+function updateUserQ()
+{
+    return "UPDATE user
+            SET ID = :ID,
+            firstname = :firstname,
+            lastname  = :lastname,
+            email     = :email,
+            password  = :password
+            WHERE ID = :ID";
+}
+
+function updateCustomerQ()
+{
+    return"UPDATE customer SET address = :address,
+            loyaltyPoints = :loyaltyPoints
+            WHERE user_ID = :ID";
+}
+
+function readUserWithEmailQ()
+{
+    return "SELECT user.* , address, loyaltyPoints
+            FROM user
+            INNER JOIN customer ON user.ID = customer.user_ID
+            WHERE user.email = :email";
+}
+
+function readUserWithIDQ()
+{
+    return "SELECT user.* , address, loyaltyPoints FROM user 
+                INNER JOIN customer ON user.ID = customer.user_ID
+                WHERE ID = :ID";
+}
