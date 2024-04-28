@@ -8,10 +8,12 @@ require '../src/common.php';
 <?php
 require_once "../src/DBconnect.php";
 
+//logic for deleting a product from the products table and other related tables.
 if (isset($_GET['product_ID'])){
 
     $prodID = $_GET["product_ID"];
 
+    //Atomically delete products from products table and related categories table.
     $connection->beginTransaction();
 
     try {
@@ -33,12 +35,15 @@ if (isset($_GET['product_ID'])){
         $statementProducts->bindParam(":product_ID", $prodID);
         $statementProducts->execute();
 
+        //If there are no errors, commit the delete.
         $connection->commit();
     } catch (Exception $e) {
 
+        //If error, rollback the deletion.
         $connection->rollback();
     }
 }
+//Function to fetch all products to be displayed.
 function fetchAllProducts($connection) {
     $sql = "SELECT * FROM products";
     $statement = $connection->prepare($sql);

@@ -11,38 +11,45 @@ echo "<br>";
 function cancelOrderTest(){
 
     //Order id to be canceled.
-    $orderId = 4;
+    $orderId = 128;
 
     try {
-        //Call cancelOrder function from the functions.php.
-        cancelOrder($orderId);
-
-        //Get a connection and fetch results to see if the cancelOrderTest worked.
+        //Get a connection and fetch results to see if the order exists.
         $pdo = get_connection();
         $stmt = $pdo->prepare("SELECT * FROM `order` WHERE order_ID = :order_id");
         $stmt->bindParam(':order_id', $orderId);
         $stmt->execute();
         $result = $stmt->fetch();
 
-        //If the order does not exist throw this error.
+        //If the order does not exist, throw an error.
         if(empty($result)){
             echo "Test failed, order does not exist";
             return false;
         }
 
-        //Print out if the result is empty or not, if its empty then the test worked, if not empty the test did not work.
+        //Call cancelOrder function from the functions.php to cancel the order.
+        cancelOrder($orderId);
+
+        //Check if the order still exists after cancellation.
+        $stmt = $pdo->prepare("SELECT * FROM `order` WHERE order_ID = :order_id");
+        $stmt->bindParam(':order_id', $orderId);
+        $stmt->execute();
+        $result = $stmt->fetch();
+
+        //If the order still exists after cancellation, the test failed.
         if (!empty($result)) {
-            echo "Test failed, order did not cancel";
+            echo "Test failed, order was not canceled";
             return false;
         } else {
             echo "Test worked, order was canceled";
             return true;
         }
+    }
         //catch any errors related to DB.
-    }catch(PDOException $e){
+    catch(PDOException $e){
         echo "Error: " . $e->getMessage();
         return false;
-    };
+    }
 }
 cancelOrderTest();
 ?>
@@ -60,10 +67,10 @@ echo "Test 2 : Checking if user exists within DB.";
 echo "<br>";
 
 //Values to be tested
-$firstName = "Justas";
+$firstName = "Justin";
 $lastName = "Juozaitis";
 $email = "justin.juoz99@gmail.com";
-$password = "Hello123?";
+$password = "Hello123??";
 
 //Creates new user object
 $user = new userClass($firstName, $lastName, $email, $password);
