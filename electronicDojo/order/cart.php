@@ -3,6 +3,7 @@
 
 session_start();
 
+require "../Classes/productsClass.php";
 include '../templates/header.php';
 include '../lib/functions.php';
 
@@ -54,6 +55,11 @@ if (isset($_POST['product_ID'])){
     }
 }
 
+$order = new Order();
+$order->setTotal($priceTotal);
+$shippingCost = $order->calculateShippingCost();
+$totalWithShipping = $priceTotal + $shippingCost;
+
 ?>
 
     <link type="text/css" rel="stylesheet" href="../css/cart.css">
@@ -100,7 +106,7 @@ if (isset($_POST['product_ID'])){
 
                         <div class="text-success">
                             <span class="text">Subtotal</span>
-                            <span class="price">&dollar;<?=$priceTotal?></span>
+                            <span class="price">&dollar;<?=$totalWithShipping?></span>
                         </div>
 
                         <div class="text-success">

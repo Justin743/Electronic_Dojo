@@ -5,7 +5,7 @@ function testShippingCost($totalPrice, $expectedShippingCost) {
     $order = new Order();
     $order->setTotal($totalPrice);
     $actualShippingCost = $order->calculateShippingCost();
-    echo "Total Price: $totalPrice, Expected Shipping Cost: €$expectedShippingCost, Actual Shipping Cost: €$actualShippingCost<br>";
+    echo "Total Price: $totalPrice, Expected Shipping Cost:€$expectedShippingCost, Actual Shipping Cost: €$actualShippingCost<br>";
 }
 
 echo "<h2>Shipping Cost Tests</h2>";
