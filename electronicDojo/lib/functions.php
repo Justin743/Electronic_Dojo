@@ -1,11 +1,17 @@
 <?php
 
-require '../src/DBconnect.php';
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3a3eeeec1ef671c17b5b7a2d18889efde979a86a
+require_once 'C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/src/DBconnect.php';
 
-function get_products(){
+//Function to get a product, using query to get info fromm DB.
+function get_products()
+{
 
     $pdo = get_connection();
+
     $query = "SELECT 
     products.product_ID,
     products.product_name,
@@ -27,14 +33,14 @@ LEFT JOIN
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     return $products;
 }
 
-
+//Function to display orders, using query to get order info from DB.
 function displayOrders($userId)
 {
     $pdo = get_connection();
+
     $stmt = $pdo->prepare("SELECT o.*, p.*, c.customer_ID FROM `order` o 
                        INNER JOIN products p ON o.product_ID_order = p.product_ID 
                        INNER JOIN customer c ON o.customer_ID_order = c.customer_ID
@@ -46,28 +52,36 @@ function displayOrders($userId)
     return $orders;
 }
 
-function cancelOrder($orderId) {
+//Function to cancel orders, using query to delete from DB.
+function cancelOrder($orderId)
+{
     $pdo = get_connection();
+
     $stmt = $pdo->prepare("DELETE FROM `order` WHERE order_ID = :order_id");
 
     $stmt->bindParam(':order_id', $orderId);
     $stmt->execute();
 }
 
+//Function to check login, query selects info from DB.
 function checkLogin($email, $password)
 {
     $pdo = get_connection();
+
     $query = "SELECT * FROM user WHERE email = :email AND password = :password";
 
     $stmt = $pdo->prepare($query);
     $stmt->execute(array(':email' => $email, ':password' => $password));
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
     return $user;
 }
 
+//Function to check admin login, query to check info from DB.
 function checkAdminLogin($email, $password)
 {
     $pdo = get_connection();
+
     $query = "SELECT u.* FROM user u 
               INNER JOIN admin a ON u.ID = a.user_ID 
               WHERE u.email = :email AND u.password = :password";
@@ -75,35 +89,35 @@ function checkAdminLogin($email, $password)
     $stmt = $pdo->prepare($query);
     $stmt->execute(array(':email' => $email, ':password' => $password));
     $adminUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
     return $adminUser;
 }
 
-function getUserDetails($userId){
-
+//Function to get user details, query to get details from DB.
+function getUserDetails($userId)
+{
     $pdo = get_connection();
-        $sql = "SELECT u.firstname, u.lastname, u.email, c.address FROM user u LEFT JOIN customer c ON u.ID = c.user_id WHERE u.ID = :userId";
 
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+    $sql = "SELECT u.firstname, u.lastname, u.email, c.address FROM user u LEFT JOIN customer c ON u.ID = c.user_id WHERE u.ID = :userId";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 
 }
 
 //Gets row of data from user table according to the userID
-function getUserID($userID) {
+function getUserID($userID)
+{
    $pdo = get_connection();
 
+   $statement = $pdo->prepare("SELECT * FROM user WHERE ID = :userID");
 
-    $statement = $pdo->prepare("SELECT * FROM user WHERE ID = :userID");
-    $statement->bindParam(':userID', $userID, PDO::PARAM_INT);
-    $statement->execute();
-
-
-    $userID = $statement->fetch(PDO::FETCH_ASSOC);
-
-
-    return $userID;
+   $statement->bindParam(':userID', $userID, PDO::PARAM_INT);
+   $statement->execute();
+   $userID = $statement->fetch(PDO::FETCH_ASSOC);
+   return $userID;
 }
 
 

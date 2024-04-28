@@ -79,7 +79,7 @@ $products = fetchAllProducts($connection);
                 <td><?php echo escape($product["loyalty_points"])?></td>
                 <td><?php echo escape($product["brand"])?></td>
                 <td><?php echo escape($product["category"])?></td>
-                <td><a href="../update-single-product.php?product_ID=<?php echo escape($product['product_ID']);?>">Edit</a></td>
+                <td><a href="../admin/update-single-product.php?product_ID=<?php echo escape($product['product_ID']);?>">Edit</a></td>
                 <td><a href="productModify.php?product_ID=<?php echo escape($product['product_ID']);?>">Delete</a></td>
 
             </tr>

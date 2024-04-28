@@ -3,6 +3,7 @@
 
 session_start();
 
+require "../Classes/productsClass.php";
 include '../templates/header.php';
 include '../lib/functions.php';
 
@@ -54,6 +55,11 @@ if (isset($_POST['product_ID'])){
     }
 }
 
+$order = new Order();
+$order->setTotal($priceTotal);
+$shippingCost = $order->calculateShippingCost();
+$totalWithShipping = $priceTotal + $shippingCost;
+
 ?>
 
     <link type="text/css" rel="stylesheet" href="../css/cart.css">
@@ -77,6 +83,7 @@ if (isset($_POST['product_ID'])){
                                 <tr>
                                     <td>You have no products added in your Shopping Cart</td>
                                 </tr>
+                            <div class = checkout>
                             <?php else: ?>
                                 <?php foreach ($products as $product): ?>
                                     <tr>
@@ -86,18 +93,20 @@ if (isset($_POST['product_ID'])){
                                         <td
                                                 class="price">&dollar;<?=$product['price']?>
                                         </td>
+
                                         <td
                                                 class="loyaltyPoints"><?=$product['loyalty_points']?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>
+                            </div>
                             </tbody>
                         </table>
 
                         <div class="text-success">
                             <span class="text">Subtotal</span>
-                            <span class="price">&dollar;<?=$priceTotal?></span>
+                            <span class="price">&dollar;<?=$totalWithShipping?></span>
                         </div>
 
                         <div class="text-success">
