@@ -1,10 +1,10 @@
 <?php
 
-require  "sqlQueries.php";
-require "Classes/userClass.php";
+require  "../lib/sqlQueries.php";
+require "../Classes/userClass.php";
 function registerUser($data){
     try {
-        require_once "src/DBconnect.php";
+        require_once "../src/DBconnect.php";
 
         $user = new userClass(
             escape($data['firstname']),
@@ -60,7 +60,7 @@ function registerUser($data){
 function createAdmin()
 {
     try {
-        require_once "src/DBconnect.php";
+        require_once "../src/DBconnect.php";
 
         $admin_fname = "Ryan";
         $admin_lname = "Dunne";

@@ -1,3 +1,4 @@
+<!-- This is a header for users who are not currently logged in -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,26 +16,26 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"/>
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/slick-theme.css"/>
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/nouislider.min.css"/>
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <!-- Custom stylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/style.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
-<!--    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+    <!--    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
     <![endif]-->
 
 </head>
@@ -54,7 +55,7 @@
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="#" class="logo">
-                             <img src="./image/eLogo.png" alt="">
+                            <img src="./image/eLogo.png" alt="">
 
                         </a>
                     </div>
@@ -66,9 +67,10 @@
                     <div class="header-search">
                         <form>
                             <select class="input-select">
-                                <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+                                <option value="0">Categories</option>
+                                <option value="1">Phones</option>
+                                <option value="2">Laptops</option>
+                                <option value="3">TVs</option>
                             </select>
                             <input class="input" placeholder="Search here">
                             <button class="search-btn">Search</button>
@@ -82,7 +84,7 @@
                     <div class="header-ctn">
                         <!-- Wishlist -->
                         <div>
-                            <a href="/electronicDojo/login.php"> <i class="fa fa-user-o"></i>
+                            <a href="../user/login.php"> <i class="fa fa-user-o"></i>
                                 <span>Login</span>
                                 <div class="qty"></div>
                             </a>
@@ -115,11 +117,8 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="/electronicDojo/index.php">Home</a></li>
-                <li><a href="/electronicDojo/products.php">Products</a></li>
-
-
-
+                <li class="active"><a href="../home/index.php">Home</a></li>
+                <li><a href="../product/products.php">Products</a></li>
             </ul>
             <!-- /NAV -->
         </div>
