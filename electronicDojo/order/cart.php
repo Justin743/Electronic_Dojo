@@ -20,7 +20,8 @@ if (isset($_POST['product_ID'])){
 
     $prodID = $_POST['product_ID'];
 
-    $statement = $pdo->prepare('SELECT * FROM products WHERE product_id = ' .$prodID);
+    $statement = $pdo->prepare('SELECT * FROM products WHERE product_ID = :product_ID');
+    $statement->bindParam(':product_ID', $prodID);
     $statement->execute();
 
     $product = $statement->fetch(PDO::FETCH_ASSOC);
@@ -38,27 +39,24 @@ if (isset($_POST['product_ID'])){
         }
     }
 
+    //Fetches product from the session array
+    $products = isset($_SESSION['Active']) ? $_SESSION['Active'] : array();
 
-    $products_in_cart = isset($_SESSION['Active']) ? $_SESSION['Active'] : array();
-    $products = array();
-
-    if ($products_in_cart){
-        $prodID = implode(',', array_keys($products_in_cart));
+    //If a product is added to the cart, display details
+    if ($products){
+        $prodID = implode(',', array_keys($products));
         $statement = $pdo->query('SELECT * FROM products WHERE product_ID IN ('. $prodID . ')');
 
         $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($products as $product){
-            $priceTotal += (float)$product['price'] * (int)$products_in_cart[$product['product_ID']];
-            $loyaltyPtsTotal += (float)$product['loyalty_points'] * (int)$products_in_cart[$product['product_ID']];
-        }
+        $productPrice = (float)$product['price'];
     }
 }
 
 $order = new Order();
-$order->setTotal($priceTotal);
+$order->setTotal($productPrice);
 $shippingCost = $order->calculateShippingCost();
-$totalWithShipping = $priceTotal + $shippingCost;
+$totalWithShipping = $productPrice + $shippingCost;
 
 ?>
 

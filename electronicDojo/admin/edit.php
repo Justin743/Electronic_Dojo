@@ -8,32 +8,35 @@ require '../lib/functions.php';
 
 
 <?php
+//Logic for deleting the user.
 if(isset($_GET['ID'])){
     require_once "../src/DBconnect.php";
+    $pdo = get_connection();
+
 
     $id = $_GET["ID"];
 
+    //Fetches the delete user query
     $sql = deleteUserQ();
 
-    $statement = $connection->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->bindParam(':ID', $id);
     $statement->execute();
 
     $success = "User ". $id. " successfully deleted";
 }
+//Fetches users from the database.
 if(isset($_POST['submit'])){
     try {
         require '../src/common.php';
         require_once '../src/DBconnect.php';
+        $pdo = get_connection();
 
-        $sql = "SELECT user.* , address, loyaltyPoints
-            FROM user
-            INNER JOIN customer ON user.ID = customer.user_ID
-            WHERE user.email = :email";
+        $sql = readUserWithEmailQ();
 
         $email = $_POST['email'];
 
-        $statement = $connection->prepare($sql);
+        $statement = $pdo->prepare($sql);
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->execute();
 
@@ -43,7 +46,7 @@ if(isset($_POST['submit'])){
     }
 }
 
-
+// Displays results if a matching email is in the database
 if (isset($_POST['submit'])) {
     if ($result && $statement->rowCount() > 0){
         ?>
@@ -77,7 +80,8 @@ if (isset($_POST['submit'])) {
             <?php } ?>
             </tbody>
         </table>
-    <?php } else { ?>
+    <?php //If no users match the email submitted it will display a message
+    } else { ?>
         > No Results found for <?php echo escape($_POST['email']); ?>
     <?php }
 }

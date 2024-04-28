@@ -1,5 +1,6 @@
 <?php
 session_start();
+//The webpage will display different headers depending on if an admin or customer logs in.
 if (isset($_SESSION['Active']) && $_SESSION['Active'] == true ){
     require "../templates/header.php";
 } else if (isset($_SESSION['AdminActive']) && $_SESSION['AdminActive'] == true){
@@ -9,7 +10,9 @@ if (isset($_SESSION['Active']) && $_SESSION['Active'] == true ){
 
     <body>
 
-<?php if (isset($_SESSION['Active']) && $_SESSION['Active'] == true){
+<?php
+//If a customer logs in they will be redirected to the index page with a welcome message.
+if (isset($_SESSION['Active']) && $_SESSION['Active'] == true){
     $name = $_SESSION['firstname'];
     echo "<h2 class='text-center'>Welcome $name, select products from the navigation bar to start shopping!</h2>";
 } ?>
