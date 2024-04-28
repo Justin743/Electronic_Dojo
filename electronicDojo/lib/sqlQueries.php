@@ -1,5 +1,6 @@
 <?php
 
+//SQL queries modularised as functions that return the query string.
 function insertIntoUserQ()
 {
     return "INSERT INTO user(firstname, lastname, email, password) 
@@ -41,5 +42,14 @@ function deleteFromCategoryQ($categoryLower)
 function getCategoryQ()
 {
     return "SELECT category FROM products WHERE product_ID = :product_ID";
+}
+function insertIntoProfileQ()
+{
+    return "INSERT INTO profile (customer_ID_profile ) VALUES (:customer_ID_profile)";
+}
+
+function checkEmailQ()
+{
+    return "SELECT COUNT(*) FROM user WHERE email = :email";
 }
 
