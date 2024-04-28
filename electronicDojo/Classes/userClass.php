@@ -151,7 +151,7 @@ class customer extends userClass
 
     public function setAddress($address)
     {
-        if (!preg_match("/^[a-zA-Z\s]*$/", $address)){
+        if (!preg_match("/^[a-zA-Z0-9\s]*$/", $address)) {
             throw new InvalidArgumentException("Invalid address: Special characters are not allowed");
         }
         $this->address = $address;
@@ -281,10 +281,6 @@ function registerUser($data, &$errorMessages)
         $statement_profile->bindParam(':customer_ID_profile' , $customerID);
         $statement_profile->execute();
 
-
-        //Sends the user to log in when the registration is successful
-        header("location:login.php");
-        exit;
     } catch (PDOException $e) {
         echo $e->getMessage();
         return;

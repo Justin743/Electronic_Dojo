@@ -7,6 +7,9 @@ $errorMessages = [];
 
         require "../src/common.php";
         registerUser($_POST, $errorMessages);
+        //Sends the user to log in when the registration is successful
+        header("location:login.php");
+        exit;
 
 
     }
@@ -49,7 +52,6 @@ $errorMessages = [];
                                 </div>
                                 <div class="d-flex flex-row align-items-center justify-content-between">
                                     <h4>Already have an account? <a href="login.php">Login</a></h4>
-
                                     <input type="submit" name="submit" class="submit" value="Register">
                                 </div>
 
