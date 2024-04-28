@@ -1,5 +1,4 @@
 <?php
-require "C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/lib/sqlQueries.php";
 class userClass{
     private $ID;
     private $firstname;
@@ -169,6 +168,7 @@ class customer extends userClass
 //Function for registering a user. Includes form validation,
 function registerUser($data, &$errorMessages, $redirectToLogin = true)
 {
+    require_once "../lib/sqlQueries.php";
     require_once "../src/DBconnect.php";
 
     $pdo = get_connection();
@@ -246,7 +246,6 @@ function registerUser($data, &$errorMessages, $redirectToLogin = true)
         //Gets the user ID to be set as the customer table's user_ID foreign key
         $userID = $pdo->lastInsertId();
 
-        //
         $customer = new customer(
             $user->getFirstname() ,
             $user->getLastname() ,
@@ -296,6 +295,7 @@ function registerUser($data, &$errorMessages, $redirectToLogin = true)
 
 function createAdmin()
 {
+    require_once "../lib/sqlQueries.php";
     try {
         require "../src/common.php";
         require_once "../src/DBconnect.php";

@@ -1,5 +1,5 @@
 <?php
-require "C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/Classes/productsClass.php";
+require "../Classes/productsClass.php";
 
 //Function to test bais path for shipping costs.
 function testShippingCost($totalPrice, $expectedShippingCost) {

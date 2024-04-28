@@ -8,6 +8,7 @@ require "../Classes/userClass.php";
 if (isset($_POST['submit'])) {
     try {
         require_once "../src/DBconnect.php";
+        require_once "../lib/sqlQueries.php";
 
         $pdo = get_connection();
 
@@ -45,6 +46,7 @@ if (isset($_POST['submit'])) {
 if (isset($_GET['ID'])) {
     try{
         require_once "../src/DBconnect.php";
+        require_once "../lib/sqlQueries.php";
         $pdo = get_connection();
 
         $id = $_GET['ID'];
