@@ -77,6 +77,7 @@ if (isset($_POST['product_ID'])){
                                 <tr>
                                     <td>You have no products added in your Shopping Cart</td>
                                 </tr>
+                            <div class = checkout>
                             <?php else: ?>
                                 <?php foreach ($products as $product): ?>
                                     <tr>
@@ -86,12 +87,14 @@ if (isset($_POST['product_ID'])){
                                         <td
                                                 class="price">&dollar;<?=$product['price']?>
                                         </td>
+
                                         <td
                                                 class="loyaltyPoints"><?=$product['loyalty_points']?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>
+                            </div>
                             </tbody>
                         </table>
 

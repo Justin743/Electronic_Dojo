@@ -55,7 +55,7 @@
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="#" class="logo">
-                            <img src="./image/eLogo.png" alt="">
+                            <img src="../image/eLogo.png" alt="">
 
                         </a>
                     </div>
