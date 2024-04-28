@@ -11,7 +11,7 @@ suites:
                 - Db:
                       dsn: 'mysql:host=localhost;dbname=electronic_dojo'
                       user: 'root'
-                      password: ''
+                      password: 'Juoz9988/'
         step_decorators: ~
 
 settings:

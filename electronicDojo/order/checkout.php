@@ -5,10 +5,7 @@ include '../templates/header.php';
 include "../lib/functions.php";
 include "../Classes/productsClass.php";
 
-
-
 if (isset($_POST['placeorder']) && !empty($_SESSION['Active'])) {
-
 
     $name = $_SESSION['firstname'];
 

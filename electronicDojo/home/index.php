@@ -85,7 +85,7 @@ if (isset($_SESSION['Active']) && $_SESSION['Active'] == true){
                         <p>For all your electronic needs</p>
                         <a class="primary-btn cta-btn" href="../product/products.php">Shop now</a>
                         <?php
-
+                        //Displays message to user to log in before shopping.
                         if (!isset($_SESSION['Active']) && !isset($_SESSION['AdminActive'])){
                             echo "<p2>Please log in before continuing</p2>";
                         }else

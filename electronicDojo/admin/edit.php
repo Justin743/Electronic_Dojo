@@ -5,14 +5,11 @@ require '../lib/sqlQueries.php';
 require '../lib/functions.php';
 ?>
 
-
-
 <?php
 //Logic for deleting the user.
 if(isset($_GET['ID'])){
     require_once "../src/DBconnect.php";
     $pdo = get_connection();
-
 
     $id = $_GET["ID"];
 

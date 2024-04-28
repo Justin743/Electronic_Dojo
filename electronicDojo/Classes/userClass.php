@@ -1,5 +1,5 @@
 <?php
-require '../lib/sqlQueries.php';
+require "C:/Users/Justin/Desktop/Programs/laragon/www/Electronic_Dojo/electronicDojo/lib/sqlQueries.php";
 class userClass{
     private $ID;
     private $firstname;
@@ -167,7 +167,7 @@ class customer extends userClass
     }
 }
 //Function for registering a user. Includes form validation,
-function registerUser($data, &$errorMessages)
+function registerUser($data, &$errorMessages, $redirectToLogin = true)
 {
     require_once "../src/DBconnect.php";
 
@@ -281,6 +281,11 @@ function registerUser($data, &$errorMessages)
         $statement_profile = $pdo->prepare($sql_profile);
         $statement_profile->bindParam(':customer_ID_profile' , $customerID);
         $statement_profile->execute();
+
+        if ($redirectToLogin) {
+            header("location:login.php");
+            exit;
+        }
 
     } catch (PDOException $e) {
         echo $e->getMessage();

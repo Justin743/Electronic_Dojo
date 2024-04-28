@@ -20,7 +20,7 @@ foreach ($testData as $data) {
         'email' => $data[2],
         'password' => $data[3],
         'address' => $data[4]
-    ], $errorMessages);
+    ], $errorMessages, false);
 
     if (!empty($errorMessages)) {
         //Implode - returns a string from elements from array.

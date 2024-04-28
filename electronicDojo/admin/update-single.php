@@ -3,7 +3,6 @@
 session_start();
 require "../src/common.php";
 require "../Classes/userClass.php";
-require "../lib/sqlQueries.php";
 
 //Function for updating user and customer table data in database
 if (isset($_POST['submit'])) {
